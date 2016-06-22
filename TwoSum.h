@@ -5,8 +5,8 @@
  *      Author: user
  */
 
-#ifndef SOLUTION_H_
-#define SOLUTION_H_
+#ifndef TWOSUM_H_
+#define TWOSUM_H_
 
 
 #include <vector>
@@ -102,4 +102,4 @@ public:
 
 
 
-#endif /* SOLUTION_H_ */
+#endif /* TWOSUM_H_ */

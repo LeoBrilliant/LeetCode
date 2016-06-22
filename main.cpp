@@ -6,7 +6,8 @@
  */
 
 #include <iostream>
-#include "Solution.h"
+
+#include "AddTwoNumbers.h"
 
 using namespace std;
 
@@ -15,7 +16,7 @@ int main()
 	cout << "Hello Leet Code" << endl;
 
 	Solution s;
-	s.twoSumTest();
+	s.AddTwoSumTest();
 
 	return 0;
 }
