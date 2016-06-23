@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-#include "AddTwoNumbers.h"
+#include "RemoveElement.h"
 
 using namespace std;
 
@@ -16,7 +16,7 @@ int main()
 	cout << "Hello Leet Code" << endl;
 
 	Solution s;
-	s.AddTwoSumTest();
+	s.removeElementTest();
 
 	return 0;
 }
