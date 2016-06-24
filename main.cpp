@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-#include "RemoveElement.h"
+#include "ThreeSum.h"
 
 using namespace std;
 
@@ -16,7 +16,7 @@ int main()
 	cout << "Hello Leet Code" << endl;
 
 	Solution s;
-	s.removeElementTest();
+	s.test();
 
 	return 0;
 }

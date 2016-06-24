@@ -11,6 +11,8 @@
 
 #include <vector>
 #include <map>
+#include <set>
+#include <list>
 #include <assert.h>
 #include <memory.h>
 #include <string>
