@@ -122,7 +122,7 @@ int combinationSum4(vector<int>& nums, int target) {
 					s.push(curr);
 			}
 			//如果当前节点没有子节点，则栈中所有元素，即一个组合方案
-			//还要判断剩余量是否为0
+			//还要判断剩余量是否为0，搜索成功的标志
 			else
 			{
 				if(curr->VolumeLeft == 0){
@@ -153,6 +153,8 @@ int combinationSum4(vector<int>& nums, int target) {
 		}
 		else
 		{
+			//回溯，当前节点遍历完成，弹出栈顶
+			//如果当前节点有兄弟，则将其兄弟入栈，如果无兄弟，则回溯至上一层
 			s.pop();
 			if(curr->sibling)
 			{
@@ -178,7 +180,7 @@ int combinationSum4(vector<int>& nums, int target) {
 	return count;
 }
 
-//这种方法会超时
+//这种方法会超时，但是结果没有问题
 int combinationSum4_2(vector<int>& nums, int target)
 {
 	if(target == 0)
@@ -195,7 +197,7 @@ int combinationSum4_2(vector<int>& nums, int target)
 
 	return res;
 }
-
+//在上述结果的基础上进行改造，可以打印出结果
 int combinationSum4_2p(vector<int>& nums, int target, list<int>& sol)
 {
 	if(target == 0)

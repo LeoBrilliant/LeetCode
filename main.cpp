@@ -6,11 +6,15 @@
  */
 
 #include "P377.h"
+#include "P226.h"
+#include "P33.h"
 
 int main()
 {
 	cout << "LeetCode Practice" << endl;
-	CombinationTest();
+	SearchTest();
+	//InvertBinaryTreeTest();
+	//CombinationTest();
 }
 
 
