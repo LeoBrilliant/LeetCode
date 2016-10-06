@@ -12,12 +12,21 @@
 #include "P342.h"
 #include "P234.h"
 #include "P32.h"
-
+#include "P233.h"
+#include "P402.h"
+#include "P3.h"
+#include "P4.h"
+#include "P5.h"
 
 int main()
 {
 	cout << "LeetCode Practice" << endl;
-	LongestValidParenthesesTest();
+	LongestPalindromeTest();
+	//FindMedianSortedArrays();
+	//LengthOfLongestSubstringTest();
+	//RemoveKDigitsTest();
+	//CountDigitOneTest();
+	//LongestValidParenthesesTest();
 	//IsPalindromeTest();
 	//PowerOfFourTest();
 	//LengthOfLastWordTest();

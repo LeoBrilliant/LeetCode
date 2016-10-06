@@ -71,15 +71,10 @@ int longestValidParentheses(string s)
 			if(c == '(')
 			{
 				sc.push(make_pair(c, i));
-				//expecting += 1;
-				//length += 1;
 			}
 			else
 			{
-				//if(length > max)
-				//	max = length;
-				//length = 0;
-				//expecting = 0;
+				//栈里没有多余的'('，所以其中一个栈可以不用把字符也保存起来。
 			}
 		}
 		else
@@ -87,41 +82,36 @@ int longestValidParentheses(string s)
 			if(c == '(')
 			{
 				sc.push(make_pair(c,i));
-				//expecting += 1;
-				//length += 1;
 			}
 			else
 			{
 				pc = sc.top();
-				//pi = make_pair(pc.second, i);
-				//tmp_len += 2;
-				//expecting -= 1;
 				sc.pop();
 
 				pnew = make_pair(pc.second, i);
 
 				while(!si.empty()){
 					pold = si.top();
+					//如果本次匹配的子串与上次匹配的子串连续，生成新的匹配子串
 					if(pnew.first == (pold.second + 1))
 					{
 						pnew = make_pair(pold.first, i);
 						si.pop();
-						//si.push(pnew);
 					}
+					//如果本次匹配的子串包含上次匹配的子串，用新串代替上次的子串
 					else if(pnew.first < pold.first)
 					{
 						pnew = make_pair(pc.second, i);
 						si.pop();
-						//si.push(pnew);
 					}
+					//这是一个独立的子串
 					else
 					{
-						//pnew = make_pair(pc.second, i);
-						//si.push(pnew);
 						break;
 					}
 				}
 				si.push(pnew);
+				//计算新子串的长度
 				length = pnew.second - pnew.first + 1;
 				if(length > max)
 				{
@@ -130,10 +120,6 @@ int longestValidParentheses(string s)
 			}
 		}
 	}
-
-	//if(length > max)
-	//	max = length;
-
 	return max;
 }
 

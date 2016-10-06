@@ -13,6 +13,9 @@
 #include <stack>
 #include <vector>
 #include <cstdlib>
+#include <string>
+#include <memory>
+#include <cstring>
 
 using namespace std;
 
