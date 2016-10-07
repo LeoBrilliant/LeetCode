@@ -16,6 +16,7 @@
 #include <string>
 #include <memory>
 #include <cstring>
+#include <cmath>
 
 using namespace std;
 

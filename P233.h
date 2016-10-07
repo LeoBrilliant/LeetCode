@@ -31,7 +31,7 @@ void Num2Digits(int n, vector<int> & vi)
 int Digits2Num(vector<int> & vi)
 {
 	int nums = 0;
-	for(size_t i = vi.size() - 1; i >= 0; --i)
+	for(int i = vi.size() - 1; i >= 0; --i)
 	{
 		nums += vi[i] * 10;
 	}
