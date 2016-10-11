@@ -5,6 +5,13 @@
  *      Author: LeoBrilliant
  */
 
+#include <iostream>
+
+#include "ThreeSum.h"
+
+#include "P11.h"
+#include "P12.h"
+#include "P14.h"
 #include "P377.h"
 #include "P226.h"
 #include "P33.h"
@@ -25,24 +32,27 @@
 
 int main()
 {
-	cout << "LeetCode Practice" << endl;
-	IsMatchTest();
-	//IsPalindromeNumTest();
-	//MyAtoiTest();
-	//ReverseTest();
-	//ConvertTest();
-	//LongestPalindromeTest();
-	//FindMedianSortedArrays();
-	//LengthOfLongestSubstringTest();
-	//RemoveKDigitsTest();
-	//CountDigitOneTest();
-	//LongestValidParenthesesTest();
-	//IsPalindromeTest();
-	//PowerOfFourTest();
-	//LengthOfLastWordTest();
-	//SearchTest();
-	//InvertBinaryTreeTest();
-	//CombinationTest();
+    cout << "LeetCode Practice" << endl;
+    IsMatchTest();
+    //IsPalindromeNumTest();
+    //MyAtoiTest();
+    //ReverseTest();
+    //ConvertTest();
+    //LongestPalindromeTest();
+    //FindMedianSortedArrays();
+    //LengthOfLongestSubstringTest();
+    //RemoveKDigitsTest();
+    //CountDigitOneTest();
+    //LongestValidParenthesesTest();
+    //IsPalindromeTest();
+    //PowerOfFourTest();
+    //LengthOfLastWordTest();
+    //SearchTest();
+    //InvertBinaryTreeTest();
+    //CombinationTest();
+    //LongestCommonPrefixTest();
+    //IntToRomanTest();
+    //MaxAreaTest();
+    Solution s;
+    s.test();
 }
-
-
