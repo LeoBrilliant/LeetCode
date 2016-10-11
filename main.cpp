@@ -19,11 +19,11 @@ int main()
 {
 	cout << "Hello Leet Code" << endl;
 
-	LongestCommonPrefixTest();
+	//LongestCommonPrefixTest();
 	//IntToRomanTest();
 	//MaxAreaTest();
-	//Solution s;
-	//s.test();
+	Solution s;
+	s.test();
 
 	return 0;
 }

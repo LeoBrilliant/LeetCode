@@ -1,7 +1,7 @@
 /*
  * ThreeSum.h
  *
- *  Created on: 2016Äê6ÔÂ24ÈÕ
+ *  Created on: 2016ï¿½ï¿½6ï¿½ï¿½24ï¿½ï¿½
  *      Author: user
  */
 
@@ -14,7 +14,6 @@
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-
     	vector<int>::iterator iter= nums.begin();
     	vector<int> result;
     	vector<vector<int>> collection;
