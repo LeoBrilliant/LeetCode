@@ -33,7 +33,7 @@
 int main()
 {
     cout << "LeetCode Practice" << endl;
-    IsMatchTest();
+    //IsMatchTest();
     //IsPalindromeNumTest();
     //MyAtoiTest();
     //ReverseTest();

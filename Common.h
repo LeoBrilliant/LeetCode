@@ -17,6 +17,8 @@
 #include <memory>
 #include <cstring>
 #include <cmath>
+#include <algorithm>
+#include <set>
 
 using namespace std;
 
