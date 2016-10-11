@@ -21,11 +21,13 @@
 #include "P7.h"
 #include "P8.h"
 #include "P9.h"
+#include "P10.h"
 
 int main()
 {
 	cout << "LeetCode Practice" << endl;
-	IsPalindromeNumTest();
+	IsMatchTest();
+	//IsPalindromeNumTest();
 	//MyAtoiTest();
 	//ReverseTest();
 	//ConvertTest();
