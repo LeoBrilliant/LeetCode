@@ -1,7 +1,7 @@
 /*
  * main.cpp
  *
- *  Created on: 2016Äê6ÔÂ20ÈÕ
+ *  Created on: 2016ï¿½ï¿½6ï¿½ï¿½20ï¿½ï¿½
  *      Author: user
  */
 
@@ -9,14 +9,21 @@
 
 #include "ThreeSum.h"
 
+#include "P11.h"
+#include "P12.h"
+#include "P14.h"
+
 using namespace std;
 
 int main()
 {
 	cout << "Hello Leet Code" << endl;
 
-	Solution s;
-	s.test();
+	LongestCommonPrefixTest();
+	//IntToRomanTest();
+	//MaxAreaTest();
+	//Solution s;
+	//s.test();
 
 	return 0;
 }
