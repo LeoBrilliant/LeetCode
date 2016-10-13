@@ -20,6 +20,8 @@
 #include <algorithm>
 #include <set>
 
+#include "DataStruct.h"
+
 using namespace std;
 
 #endif /* COMMON_H_ */

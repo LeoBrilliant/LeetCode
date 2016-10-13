@@ -29,10 +29,22 @@
 #include "P8.h"
 #include "P9.h"
 #include "P10.h"
+#include "P16.h"
+#include "P17.h"
+#include "P18.h"
+#include "P19.h"
+#include "P20.h"
+#include "P21.h"
 
 int main()
 {
     cout << "LeetCode Practice" << endl;
+    MergeTwoListsTest();
+    //IsValidTest();
+    //RemoveNthFromEndTest();
+    //FourSumTest();
+    //LetterCombinationsTest();
+    //ThreeSumClosestTest();
     //IsMatchTest();
     //IsPalindromeNumTest();
     //MyAtoiTest();
@@ -53,6 +65,6 @@ int main()
     //LongestCommonPrefixTest();
     //IntToRomanTest();
     //MaxAreaTest();
-    Solution s;
-    s.test();
+    //Solution s;
+    //s.test();
 }

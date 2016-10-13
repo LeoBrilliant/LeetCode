@@ -13,7 +13,7 @@
 vector<int> value{0, 1, 20, 300, 4000, 50000,
 	600000, 7000000, 80000000, 900000000};
 
-vector<int> pow10{1, 10, 100, 1000, 10000,
+vector<int> pow_10{1, 10, 100, 1000, 10000,
 	100000, 1000000, 10000000, 100000000, 1000000000};
 
 void Num2Digits(int n, vector<int> & vi)
@@ -65,7 +65,7 @@ int countDigitOne(int n) {
 		}
 		else if(m > 1)
 		{
-			count += m * value[i] + pow10[i];
+			count += m * value[i] + pow_10[i];
 		}
 	}
 

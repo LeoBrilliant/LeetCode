@@ -10,15 +10,17 @@
 
 #include <iostream>
 #include <list>
+#include "Common.h"
 
 using namespace std;
 
+/*
 struct ListNode {
 	int val;
 	ListNode *next;
 	ListNode(int x) : val(x), next(NULL) {}
 };
-
+*/
 //这里想错了，不是判断单链表中有没有环，而是看是不是回文单链表
 /*
 bool isPalindrome(ListNode* head) {
