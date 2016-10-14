@@ -35,11 +35,17 @@
 #include "P19.h"
 #include "P20.h"
 #include "P21.h"
+#include "P22.h"
+#include "P23.h"
+#include "P24.h"
 
 int main()
 {
     cout << "LeetCode Practice" << endl;
-    MergeTwoListsTest();
+    SwapPairsTest();
+    //MergeKListsTest();
+    //GeneratParenthesisTest();
+    //MergeTwoListsTest();
     //IsValidTest();
     //RemoveNthFromEndTest();
     //FourSumTest();

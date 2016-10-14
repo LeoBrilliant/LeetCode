@@ -84,6 +84,12 @@ void MergeTwoListsTest()
 	ListNode * l = mergeTwoLists(l1, l2);
 
 	DumpListNode(l);
+
+	string s = "cba";
+
+	sort(s.begin(), s.end());
+
+	cout << s << endl;
 }
 
 
