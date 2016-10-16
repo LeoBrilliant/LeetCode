@@ -45,5 +45,19 @@ void DumpListNode(ListNode * head)
 	cout << "^]" << endl;
 }
 
+void DumpListNode(ListNode * head, ListNode * tail)
+{
+	cout << '[' ;
+	while(head)
+	{
+		cout << head->val << " -> ";
+
+		if(head == tail)
+			break;
+
+		head = head->next;
+	}
+	cout << "^]" << endl;
+}
 
 

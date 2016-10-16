@@ -38,11 +38,17 @@
 #include "P22.h"
 #include "P23.h"
 #include "P24.h"
+#include "P25.h"
+#include "P26.h"
+#include "P28.h"
 
 int main()
 {
     cout << "LeetCode Practice" << endl;
-    SwapPairsTest();
+    StrStrTest();
+    //RemoveDuplicatesTest();
+    //ReverseKGroupTest();
+    //SwapPairsTest();
     //MergeKListsTest();
     //GeneratParenthesisTest();
     //MergeTwoListsTest();

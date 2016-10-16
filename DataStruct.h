@@ -23,4 +23,17 @@ ListNode * GenListFromVector(vector<int> & nums);
 
 void DumpListNode(ListNode * head);
 
+void DumpListNode(ListNode * head, ListNode * tail);
+
+template<typename T>
+void DumpVector(vector<T> & vt)
+{
+	cout << '[';
+	for(auto t : vt)
+	{
+		cout << t << ", ";
+	}
+	cout << "]" << endl;
+}
+
 #endif /* DATASTRUCT_H_ */
