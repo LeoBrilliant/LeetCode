@@ -94,12 +94,13 @@ vector<int> getNext(string p)
 	//结束标志
 	next[0] = -1;
 	// i是模式串的长度，j是当前字符的下标，k是公共前缀后一个字符的下标
+	// next[i-1]已经在循环结束前进行了初始化
 	while(j < i - 1)
 	{
 		//如果没有找到公共的前缀和后缀，即k == -1时，则从模式串的头部开始寻找，即next[j] = 0;
 		//如果有公共前缀，并且当前字符p[j]与公共前缀后一个字符p[k]相等，则next[j] = k;
 		//如果有公共前缀，但是当前字符p[j]与公共前后一个字符p[k]不等，则继续寻找公共前缀。
-		//next数组的下标表示？
+		//next数组的下标表示当前比较的字符的下标，next数组中的值表示公共前缀的长度
 		if(k == -1 || p[j] == p[k])
 		{
 			k++;
@@ -119,9 +120,14 @@ int KMP(string s, string p)
 {
 	int i = 0;
 	vector<int> next = getNext(p);
+
 	int j = 0;
+	int index = -1;
 	while(i < s.size())
 	{
+		// 如果没有公共前缀，即取到next[0]，则从p[0]和s[i+1]开始比较
+		// 或者当前比较的字符相等,同时比较下一个字符
+		// 如果存在公共前缀，并且当前字符不相等，则寻找长度更短的公共前缀
 		if(j == -1 || s[i] == p[j])
 		{
 			i ++;
@@ -132,11 +138,16 @@ int KMP(string s, string p)
 			j = next[j];
 		}
 
+		//已经找到第一次匹配
 		if(j == p.size())
-			return i - j;
+		{
+			index = i - j;
+			break;
+		}
 	}
 
-	return -1;
+	DumpVector(next);
+	return index;
 }
 
 int strStr(string haystack, string needle)
@@ -177,6 +188,8 @@ void StrStrTest()
 	s1 = "";
 	s2 = "";
 */
+	s1 = "abcdabcdabde";
+	s2 = "abcdabd";
 
 	int k =  strStr(s1, s2);
 
