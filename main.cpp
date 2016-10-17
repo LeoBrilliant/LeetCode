@@ -43,10 +43,15 @@
 #include "P28.h"
 #include "P29.h"
 
+#include "P38.h"
+#include "P41.h"
+
 int main()
 {
     cout << "LeetCode Practice" << endl;
-    DivideTest();
+    CountAndSayTest();
+    //FirstMissingPositiveTest();
+    //DivideTest();
     //StrStrTest();
     //RemoveDuplicatesTest();
     //ReverseKGroupTest();
