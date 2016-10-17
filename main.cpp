@@ -43,10 +43,13 @@
 #include "P28.h"
 #include "P29.h"
 
+#include "P46.h"
+
 int main()
 {
     cout << "LeetCode Practice" << endl;
-    DivideTest();
+    PermuteTest();
+    //DivideTest();
     //StrStrTest();
     //RemoveDuplicatesTest();
     //ReverseKGroupTest();

@@ -36,4 +36,15 @@ void DumpVector(vector<T> & vt)
 	cout << "]" << endl;
 }
 
+template<typename T>
+void DumpVectorOfVector(vector<vector<T>> & vvt)
+{
+	cout << "[" << endl;
+	for(auto vt : vvt)
+	{
+		DumpVector(vt);
+	}
+	cout << "]" << endl;
+}
+
 #endif /* DATASTRUCT_H_ */
