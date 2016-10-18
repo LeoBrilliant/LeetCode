@@ -44,7 +44,7 @@ void CountAndSayTest()
 
 	n = 2;
 
-	for(n = 1; n < 37; ++n){
+	for(n = 1; n < 30; ++n){
 	string s = countAndSay(n);
 
 	cout << s << endl;

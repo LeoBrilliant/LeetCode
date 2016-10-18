@@ -46,11 +46,13 @@
 #include "P38.h"
 #include "P41.h"
 #include "P46.h"
+#include "P47.h"
 
 int main()
 {
     cout << "LeetCode Practice" << endl;
-    CountAndSayTest();
+    PermuteUniqueTest();
+    //CountAndSayTest();
     //FirstMissingPositiveTest();
     //PermuteTest();
     //DivideTest();    //StrStrTest();
