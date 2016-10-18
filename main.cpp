@@ -46,6 +46,7 @@
 #include "P31.h"
 #include "P34.h"
 #include "P35.h"
+#include "P36.h"
 #include "P38.h"
 #include "P41.h"
 #include "P46.h"
@@ -54,7 +55,8 @@
 int main()
 {
     cout << "LeetCode Practice" << endl;
-    SearchInsertTest();
+    IsValidSudokuTest();
+    //SearchInsertTest();
     //SearchRangeTest();
     //NextPermutationTest();
     //PermuteUniqueTest();
