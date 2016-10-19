@@ -48,14 +48,22 @@
 #include "P35.h"
 #include "P36.h"
 #include "P38.h"
+#include "P39.h"
+#include "P40.h"
 #include "P41.h"
+#include "P43.h"
 #include "P46.h"
 #include "P47.h"
+#include "P48.h"
 
 int main()
 {
     cout << "LeetCode Practice" << endl;
-    IsValidSudokuTest();
+    RotageTest();
+    //CombinationSum2Test();
+    //CombinationSumTest();
+    //MultiplyTest();
+    //IsValidSudokuTest();
     //SearchInsertTest();
     //SearchRangeTest();
     //NextPermutationTest();
