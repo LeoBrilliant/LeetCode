@@ -51,6 +51,7 @@
 #include "P39.h"
 #include "P40.h"
 #include "P41.h"
+#include "P42.h"
 #include "P43.h"
 #include "P45.h"
 #include "P46.h"
@@ -62,7 +63,8 @@
 int main()
 {
     cout << "LeetCode Practice" << endl;
-    JumpTest();
+    TrapTest();
+    //JumpTest();
     //GroupAnagramsTest();
     //MyPowTest();
     //RotageTest();
