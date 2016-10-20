@@ -36,17 +36,46 @@ void GetCombinationSum(set<vector<int>> & s, vector<int> & c, vector<int> & curr
 	}
 }
 
+void GetCombinationSum2(vector<vector<int>> & s, vector<int> & c, vector<int> & curr, int target)
+{
+	if(target == 0)
+	{
+		s.push_back(curr);
+		return;
+	}
+	else if(target < 0)
+		return;
+
+	for(int i = 0; i < c.size(); ++i)
+	{
+		if(target - c[i] >= 0)
+		{
+			vector<int> left;
+			for(int j = i; j < c.size(); ++j)
+				left.push_back(c[j]);
+
+			curr.push_back(c[i]);
+			GetCombinationSum2(s, left, curr, target - c[i]);
+			curr.pop_back();
+		}
+	}
+}
+
 vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
 	set<vector<int>> s;
 	vector<int> curr;
-	GetCombinationSum(s, candidates, curr, target);
+	sort(candidates.begin(), candidates.end());
+	//GetCombinationSum(s, candidates, curr, target);
 
 	vector<vector<int>> ret;
 
-	for(auto vi : s)
-	{
-		ret.push_back(vi);
-	}
+//	for(auto vi : s)
+//	{
+//		ret.push_back(vi);
+//	}
+
+	GetCombinationSum2(ret, candidates, curr, target);
+
 	return ret;
 }
 

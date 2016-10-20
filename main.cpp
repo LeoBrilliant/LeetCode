@@ -52,14 +52,20 @@
 #include "P40.h"
 #include "P41.h"
 #include "P43.h"
+#include "P45.h"
 #include "P46.h"
 #include "P47.h"
 #include "P48.h"
+#include "P49.h"
+#include "P50.h"
 
 int main()
 {
     cout << "LeetCode Practice" << endl;
-    RotageTest();
+    JumpTest();
+    //GroupAnagramsTest();
+    //MyPowTest();
+    //RotageTest();
     //CombinationSum2Test();
     //CombinationSumTest();
     //MultiplyTest();
