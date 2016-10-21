@@ -13,6 +13,9 @@
 
 int trap(vector<int>& height) {
 
+	if(!height.size())
+		return 0;
+
 	stack<pair<int, int>> t;
 
 	bool desc = true;
@@ -20,6 +23,7 @@ int trap(vector<int>& height) {
 
 	int left = 0, right = height.size() - 1;
 
+	// 寻找第一个递减序列的左边界
 	for(left = 0; left < height.size() - 1 ; ++left)
 	{
 		if(height[left] > height[left + 1])
@@ -31,6 +35,7 @@ int trap(vector<int>& height) {
 	if(left == height.size() - 1)
 		return 0;
 
+	// 寻找最后一个递增序列的右边界
 	for(right = height.size() - 1; right >= left; --right)
 	{
 		if(height[right] > height[right - 1])
@@ -43,7 +48,7 @@ int trap(vector<int>& height) {
 		return 0;
 
 	int currleft = left, currright = right;
-	int maxleft = height[left], maxright = height[right];
+	int maxleft = left;
 	for(int i = left; i <= right; ++i)
 	{
 		if(desc)
@@ -57,7 +62,7 @@ int trap(vector<int>& height) {
 		}
 		else
 		{
-			if(height[i] > height[i + 1])
+			if(i == right || height[i] > height[i + 1])
 			{
 				currright = i;
 
@@ -65,18 +70,26 @@ int trap(vector<int>& height) {
 				{
 					t.push(make_pair(currleft, currright));
 					maxleft = currleft;
-					maxright = right;
+					if(height[currright] > height[maxleft])
+					{
+						maxleft = currright;
+					}
 				}
 				else
 				{
 					if(height[currright] > height[currleft] && height[maxleft] > height[currleft])
 					{
-						while(t.top().first != maxleft && height[t.top().second] <= height[currright])
+						pair<int, int> pi;
+						while(t.size() && height[t.top().first] >= height[t.top().second] && height[t.top().second] <= height[currright])
+						{
+							pi = t.top();
 							t.pop();
-
-						pair<int, int> pi = t.top();
-						t.pop();
+						}
 						t.push(make_pair(pi.first, currright));
+					}
+					else
+					{
+						t.push(make_pair(currleft, currright));
 					}
 
 					if(height[currright] > height[maxleft])
@@ -92,6 +105,7 @@ int trap(vector<int>& height) {
 	}
 
 	int ret = 0;
+	int debug = t.size();
 	while(t.size())
 	{
 		pair<int, int> index = t.top();
@@ -110,7 +124,13 @@ int trap(vector<int>& height) {
 void TrapTest()
 {
 	vector<int> vi;
-	vi = {0,1,0,2,1,0,1,3,2,1,2,1};
+	vi = {0,1,0,2,1,0,1,3,2,1,2,1}; // 6
+
+	vi = {0, 3, 1, 2, 1, 0, 1, 3, 0}; // 10
+
+	//vi = {2, 0, 2}; // 2
+
+	//vi = {8,9,3,6,9,6,8,0,7,6,8,1}; // 22
 
 	int ret = trap(vi);
 
