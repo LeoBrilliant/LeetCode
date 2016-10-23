@@ -42,11 +42,12 @@
 #include "P26.h"
 #include "P28.h"
 #include "P29.h"
-
+#include "P30.h"
 #include "P31.h"
 #include "P34.h"
 #include "P35.h"
 #include "P36.h"
+#include "P37.h"
 #include "P38.h"
 #include "P39.h"
 #include "P40.h"
@@ -64,7 +65,9 @@
 int main()
 {
     cout << "LeetCode Practice" << endl;
-    WildcardMatchingTest();
+    SolveSudokuTest();
+    //FindSubstringTest();
+    //WildcardMatchingTest();
     //TrapTest();
     //JumpTest();
     //GroupAnagramsTest();
