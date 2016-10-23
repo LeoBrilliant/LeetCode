@@ -10,10 +10,10 @@
 
 #include "Common.h"
 
-bool isMatch(string s, string p) {
+bool isMatchReg(string s, string p) {
 	if(s.length() == 0)
 	{
-		if(p.length() == 0 || (p[1] == '*' && isMatch(s, p.substr(2))))
+		if(p.length() == 0 || (p[1] == '*' && isMatchReg(s, p.substr(2))))
 			return true;
 		else
 			return false;
@@ -24,7 +24,7 @@ bool isMatch(string s, string p) {
 	if(p[1] != '*')
 	{
 		if(s[0] == p[0] || p[0] == '.')
-			return isMatch(s.substr(1), p.substr(1));
+			return isMatchReg(s.substr(1), p.substr(1));
 		else
 			return false;
 	}
@@ -32,17 +32,17 @@ bool isMatch(string s, string p) {
 	{
 		if(s[0] != p[0] && p[0] != '.')
 		{
-			return isMatch(s, p.substr(2));
+			return isMatchReg(s, p.substr(2));
 		}
 		else //s[0] == p[0] || p[0] == '.',
 		{
-			if(isMatch(s, p.substr(2)))
+			if(isMatchReg(s, p.substr(2)))
 				return true;
 
 			int i = 0;
 			while(s[i] == p[0] || p[0] == '.')
 			{
-				if(isMatch(s.substr(i + 1), p.substr(2)))
+				if(isMatchReg(s.substr(i + 1), p.substr(2)))
 					return true;
 				if(i+1 >= s.length())
 					break;
@@ -88,7 +88,7 @@ void IsMatchTest()
 	s = "ab", p = ".*";
 	s = "aab", p = "c*a*b";
 
-	bool ret = isMatch(s, p);
+	bool ret = isMatchReg(s, p);
 
 	cout << ret << endl;
 

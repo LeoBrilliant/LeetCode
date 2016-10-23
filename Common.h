@@ -20,6 +20,7 @@
 #include <algorithm>
 #include <set>
 #include <map>
+#include <cassert>
 
 #include "DataStruct.h"
 
