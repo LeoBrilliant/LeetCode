@@ -345,11 +345,12 @@ void solveSudoku(vector<vector<char>> & board)
 	pair<pair<int, int>, char> node;
 	stack<pair<pair<int, int>, char>> mem;
 	bool ret = false;
+	bool reset = false;
 	char c;
 
-	for(int x = 0; x < 9; x ++)
+	for(int x = 0; x < 9; x++)
 	{
-		for(int y = 0; y < 9; ++y)
+		for(int y = 0; y < 9;)
 		{
 			if(board[x][y] == '.')
 			{
@@ -375,17 +376,28 @@ void solveSudoku(vector<vector<char>> & board)
 				{
 					board[x][y] = '.';
 					mem.pop();
-					if(!mem.empty())
+					while(!mem.empty())
 					{
 						x = mem.top().first.first;
 						y = mem.top().first.second;
-						mem.top().second++;
+						c = mem.top().second;
+						if(c >= '9')
+						{
+							board[x][y] = '.';
+							mem.pop();
+						}
+						else
+						{
+							mem.top().second++;
+							reset = true;
+							break;
+						}
 					}
 				}
 			}
 			else
 			{
-				if(!mem.empty())
+				if(mem.empty())
 					continue;
 
 				node = mem.top();
@@ -407,15 +419,31 @@ void solveSudoku(vector<vector<char>> & board)
 					{
 						board[x][y] = '.';
 						mem.pop();
-						if(!mem.empty())
+						while(!mem.empty())
 						{
 							x = mem.top().first.first;
 							y = mem.top().first.second;
-							mem.top().second++;
+							c = mem.top().second;
+							if(c >= '9')
+							{
+								board[x][y] = '.';
+								mem.pop();
+							}
+							else
+							{
+								mem.top().second++;
+								reset = true;
+								break;
+							}
 						}
 					}
 				}
 			}
+			if(!reset)
+				y++;
+			else
+				reset = false;
+			//cout << '[' << x << ", "  << y << " ] ->" << board[x][y] << endl;
 		}
 	}
 }
@@ -426,6 +454,9 @@ void SolveSudokuTest()
 	vs = {".87654321","2........","3........","4........","5........","6........","7........","8........","9........"};
 
 	vs = {"..9748...","7........",".2.1.9...","..7...24.",".64.1.59.",".98...3..","...8.3.2.","........6","...2759.."};
+
+	vs = {"53..7....","6..195...",".98....6.","8...6...3","4..8.3..1","7...2...6",".6....28.","...419..5","....8..79"};
+
 	vector<vector<char>> vvc;
 
 	for(auto s : vs)
