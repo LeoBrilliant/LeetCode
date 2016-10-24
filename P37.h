@@ -279,6 +279,40 @@ bool CheckXY(vector<vector<char>> & board, int x, int y)
 {
 	bool ret = true;
 	// Check Row
+	char c;
+	char t = board[x][y];
+	for(int i = 0; i < 9; ++i)
+	{
+		c = board[x][i];
+		if(i != y && c == t)
+			return false;
+	}
+
+	for(size_t j = 0; j < board.size(); ++j)
+	{
+		c = board[j][y];
+		if(j != x && c == t)
+			return false;
+	}
+
+	int r = x / 3 * 3;
+	int col = y / 3 * 3;
+
+	for(int i = 0; i < 3; ++i)
+	{
+		for(int j = 0; j < 3; ++ j)
+		{
+			c = board[r + i][col + j];
+			if(x != r +i && y != col + j && c == t)
+				return false;
+		}
+	}
+	return ret;
+}
+bool CheckXY2(vector<vector<char>> & board, int x, int y)
+{
+	bool ret = true;
+	// Check Row
 	vector<int> vr(9, 0);
 	vector<int> vc(9, 0);
 	vector<int> vg(9, 0);
