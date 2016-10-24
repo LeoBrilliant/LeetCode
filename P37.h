@@ -398,7 +398,10 @@ void solveSudoku(vector<vector<char>> & board)
 			else
 			{
 				if(mem.empty())
+				{
+					y++;
 					continue;
+				}
 
 				node = mem.top();
 				if(node.first.first == x && node.first.second == y)
@@ -443,6 +446,8 @@ void solveSudoku(vector<vector<char>> & board)
 				y++;
 			else
 				reset = false;
+			//if(x == 8 && y == 8)
+			//	cout << "81" << endl;
 			//cout << '[' << x << ", "  << y << " ] ->" << board[x][y] << endl;
 		}
 	}
