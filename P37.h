@@ -10,6 +10,7 @@
 
 #include "Common.h"
 
+/*
 bool CheckRows2(vector<vector<char>> & board)
 {
 	bool ret = true;
@@ -126,11 +127,11 @@ vector<vector<int>> PreprocessRows(vector<vector<char>> & board)
 			}
 		}
 
-		vector<int> tmp;
+		vector<int> tmp(10, 0);
 		for(size_t i = 0 ; i < vi.size(); ++i)
 		{
 			if(vi[i] == 0)
-				tmp.push_back(i + 1);
+				tmp[i] = 1;
 		}
 		ret.push_back(tmp);
 	}
@@ -158,11 +159,11 @@ vector<vector<int>> PreprocessColumns(vector<vector<char>> & board)
 			}
 		}
 
-		vector<int> tmp;
+		vector<int> tmp(10, 0);
 		for(size_t i = 0 ; i < vi.size(); ++i)
 		{
 			if(vi[i] == 0)
-				tmp.push_back(i + 1);
+				tmp[i] = 0;
 		}
 		ret.push_back(tmp);
 	}
@@ -206,16 +207,31 @@ vector<vector<int>> PreprocessGrids(vector<vector<char>> & board)
 	return ret;
 }
 
+typedef struct sNode{
+	int x;
+	int y;
+	int curr;
+	vector<int> currset;
+	vector<int> searched;
+} sNode;
+
+int GetGridNo(int x, int y)
+{
+	return  x / 3 * 3 + y / 3 ;
+}
+*/
+// 本来想通过缩小可选择范围来加速，后来发现维护这个可选择集合实在是太难了。。。
+// 忍不住去网上看了解法，发现就是暴力破解。。。好吧，重新写
+/*
 void solveSudoku(vector<vector<char>>& board) {
 
+	// 获取行、列、小格的剩余元素
 	vector<vector<int>> rows = PreprocessRows(board);
 	vector<vector<int>> cols = PreprocessColumns(board);
 	vector<vector<int>> grids = PreprocessGrids(board);
 
-	pair<int, int> xy;
-	vector<int> eles;
-	pair<pair<int, int>, pair<int, vector<int>>> node;
-	vector<pair<pair<int, int>, pair<int, vector<int>>>> lists;
+	sNode * node;
+	vector<sNode *> lists;
 
 	for(int x = 0; x < 9; x ++)
 	{
@@ -223,8 +239,10 @@ void solveSudoku(vector<vector<char>>& board) {
 		{
 			if(board[x][y] == '.')
 			{
-				xy = make_pair(x, y);
-				int gridno = x / 3 * 3 + y / 3 ;
+				node =  new sNode;
+				node->x = x;
+				node->y = y;
+				int gridno = GetGridNo(x, y);
 
 				vector<int> rc;
 				set_intersection(rows[x].begin(), rows[x].end(),
@@ -233,15 +251,163 @@ void solveSudoku(vector<vector<char>>& board) {
 				set_intersection(rc.begin(), rc.end(),
 						grids[gridno].begin(), grids[gridno].end(), back_inserter(rcg));
 
-				node = make_pair(xy, make_pair(0, rcg));
+				node->curr = 0;
+				node->currset = rcg;
 				lists.push_back(node);
 			}
 		}
 	}
 
+	for(size_t i = 0; i < lists.size(); ++i)
+	{
+		for(size_t j = 0; j < lists[i]->currset.size(); ++ j)
+		{
+			lists[i]->curr = lists[i]->currset[j];
+			lists[i]->currset;
+		}
+	}
+
+
+
 	DumpVectorOfVector(rows);
 	DumpVectorOfVector(cols);
 	DumpVectorOfVector(grids);
+}
+*/
+
+bool CheckXY(vector<vector<char>> & board, int x, int y)
+{
+	bool ret = true;
+	// Check Row
+	vector<int> vr(9, 0);
+	vector<int> vc(9, 0);
+	vector<int> vg(9, 0);
+	for(auto c : board[x])
+	{
+		if(c == '.')
+			continue;
+
+		int index = c - '1';
+		if(vr[index] == 0)
+		{
+			vr[index] ++;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	for(size_t j = 0; j < board.size(); ++j)
+	{
+		char c = board[j][y];
+		if(board[j][y] == '.')
+			continue;
+
+		int index = board[j][y] - '1';
+		if(vc[index] == 0)
+		{
+			vc[index] ++;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	int r = x / 3 * 3;
+	int c = y / 3 * 3;
+
+	for(int i = 0; i < 3; ++i)
+	{
+		for(int j = 0; j < 3; ++ j)
+		{
+			if(board[r + i][c + j] == '.')
+				continue;
+
+			int index = board[r + i][c + j] - '1';
+			if(vg[index] == 0)
+			{
+				vg[index] ++;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+	return ret;
+}
+
+void solveSudoku(vector<vector<char>> & board)
+{
+	pair<int, int> xy;
+	pair<pair<int, int>, char> node;
+	stack<pair<pair<int, int>, char>> mem;
+	bool ret = false;
+	char c;
+
+	for(int x = 0; x < 9; x ++)
+	{
+		for(int y = 0; y < 9; ++y)
+		{
+			if(board[x][y] == '.')
+			{
+				xy = make_pair(x, y);
+				node = make_pair(xy, '.');
+				mem.push(node);
+
+				node = mem.top();
+				for(c = '1'; c <= '9'; ++c)
+				{
+					node.second = c;
+					board[x][y] = c;
+
+					ret = CheckXY(board, x, y);
+					if(ret)
+						break;
+				}
+				if(c > '9' && ! ret)
+				{
+					mem.pop();
+					if(!mem.empty())
+					{
+						x = mem.top().first.first;
+						y = mem.top().first.second;
+						mem.top().second++;
+					}
+				}
+			}
+			else
+			{
+				if(!mem.empty())
+					continue;
+
+				node = mem.top();
+				if(node.first.first == x && node.first.second == y)
+				{
+					for(c = node.second; c <= '9'; ++c)
+					{
+						board[x][y] = c;
+
+						ret = CheckXY(board, x, y);
+						if(ret)
+							break;
+					}
+					if(c > '9' && ! ret)
+					{
+						mem.pop();
+						if(!mem.empty())
+						{
+							x = mem.top().first.first;
+							y = mem.top().first.second;
+							mem.top().second++;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 void SolveSudokuTest()
