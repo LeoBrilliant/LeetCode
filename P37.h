@@ -358,6 +358,7 @@ void solveSudoku(vector<vector<char>> & board)
 				mem.push(node);
 
 				node = mem.top();
+				ret = false;
 				for(c = '1'; c <= '9'; ++c)
 				{
 					node.second = c;
@@ -365,10 +366,14 @@ void solveSudoku(vector<vector<char>> & board)
 
 					ret = CheckXY(board, x, y);
 					if(ret)
+					{
+						mem.top().second = c;
 						break;
+					}
 				}
 				if(c > '9' && ! ret)
 				{
+					board[x][y] = '.';
 					mem.pop();
 					if(!mem.empty())
 					{
@@ -386,16 +391,21 @@ void solveSudoku(vector<vector<char>> & board)
 				node = mem.top();
 				if(node.first.first == x && node.first.second == y)
 				{
+					ret = false;
 					for(c = node.second; c <= '9'; ++c)
 					{
 						board[x][y] = c;
 
 						ret = CheckXY(board, x, y);
 						if(ret)
+						{
+							mem.top().second = c;
 							break;
+						}
 					}
 					if(c > '9' && ! ret)
 					{
+						board[x][y] = '.';
 						mem.pop();
 						if(!mem.empty())
 						{
@@ -415,6 +425,7 @@ void SolveSudokuTest()
 	vector<string> vs;
 	vs = {".87654321","2........","3........","4........","5........","6........","7........","8........","9........"};
 
+	vs = {"..9748...","7........",".2.1.9...","..7...24.",".64.1.59.",".98...3..","...8.3.2.","........6","...2759.."};
 	vector<vector<char>> vvc;
 
 	for(auto s : vs)
@@ -430,5 +441,7 @@ void SolveSudokuTest()
 	DumpVectorOfVector(vvc);
 
 	solveSudoku(vvc);
+
+	DumpVectorOfVector(vvc);
 }
 #endif /* P37_H_ */
