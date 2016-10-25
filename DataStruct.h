@@ -47,4 +47,7 @@ void DumpVectorOfVector(vector<vector<T>> & vvt)
 	cout << "]" << endl;
 }
 
+void DumpVectorOfStringByChar(vector<string> & vs);
+void DumpVectorOfVectorOfStringByChar(vector<vector<string>> & vvs);
+
 #endif /* DATASTRUCT_H_ */

@@ -60,4 +60,29 @@ void DumpListNode(ListNode * head, ListNode * tail)
 	cout << "^]" << endl;
 }
 
+void DumpVectorOfVectorOfStringByChar(vector<vector<string>> & vvs)
+{
+	int count = 0;
+	cout << "[" << endl;
+	for(auto vs : vvs)
+	{
+		cout << ++ count << endl;
+		DumpVectorOfStringByChar(vs);
+	}
+	cout << "]" << endl;
+}
 
+void DumpVectorOfStringByChar(vector<string> & vs)
+{
+	cout << "[" << endl;
+	for(auto s : vs)
+	{
+		cout << "[ " ;
+		for(auto c : s)
+		{
+			cout << c << ", " ;
+		}
+		cout << " ]" << endl;
+	}
+	cout << "]" << endl;
+}
