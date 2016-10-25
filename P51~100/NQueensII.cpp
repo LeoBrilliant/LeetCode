@@ -139,6 +139,43 @@ int totalNQueens(int n) {
 	return ret;
 }
 
+void NQueensRecursive(vector<string> & board, int x, int & count)
+{
+	int n = board.size();
+	if(x == n)
+	{
+		count++;
+		return;
+	}
+
+	bool check = false;
+	for(int i = 0; i < n; ++i)
+	{
+		board[x][i] = 'Q';
+		check = CheckXY(board, x, i);
+		if(check)
+		{
+			NQueensRecursive(board, x + 1, count);
+		}
+		board[x][i] = '.';
+	}
+}
+
+int totalNQueensRecursive(int n) {
+	int ret = 0;
+
+	string s(n, '.');
+	vector<string> vs;
+
+	// 初始化棋盘
+	for(int i = 0; i < n; ++i)
+		vs.push_back(s);
+
+	NQueensRecursive(vs, 0, ret);
+
+	return ret;
+}
+
 void TotalNQueensTest()
 {
 	int n;
@@ -172,6 +209,13 @@ void TotalNQueensTest()
 	n = 5;
 	ret = totalNQueens(n);
 	assert(ret == 10);
-
 	cout << ret << endl;
+
+	cout << "test case 6" << endl;
+	n = 5;
+	ret = totalNQueensRecursive(n);
+	assert(ret == 10);
+	cout << ret << endl;
+
+
 }
