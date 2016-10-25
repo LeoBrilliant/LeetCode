@@ -10,6 +10,8 @@
 
 #include "..\Common.h"
 
+// P52
+void MaxSubArrayTest();
 // P51
 void SolveNQueensTest();
 // P52
