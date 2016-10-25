@@ -10,6 +10,8 @@
 
 #include "..\Common.h"
 
+// P54
+void SpiralOrderTest();
 // P52
 void MaxSubArrayTest();
 // P51

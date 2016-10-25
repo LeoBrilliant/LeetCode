@@ -9,7 +9,8 @@
 
 void P51_100()
 {
-	MaxSubArrayTest();
+	SpiralOrderTest();
+	//MaxSubArrayTest();
 	//TotalNQueensTest();
 	//SolveNQueensTest();
 }
