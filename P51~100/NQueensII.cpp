@@ -1,13 +1,13 @@
 /*
- * NQueens.cpp
+ * NQueensII.cpp
  *
  *  Created on: 2016年10月25日
- *      Author: user
+ *      Author: LeoBrilliant
  */
 
 #include "P51~100.h"
 
-bool CheckXY(vector<string> & board, int x, int y)
+static bool CheckXY(vector<string> & board, int x, int y)
 {
 	bool ret = true;
 	char c;
@@ -23,7 +23,7 @@ bool CheckXY(vector<string> & board, int x, int y)
 	}
 
 	// Check Column
-	for(size_t j = 0; j < n; ++j)
+	for(int j = 0; j < n; ++j)
 	{
 		c = board[j][y];
 		if(j != x && c == t)
@@ -62,9 +62,9 @@ bool CheckXY(vector<string> & board, int x, int y)
 	return ret;
 }
 
-vector<vector<string>> solveNQueens(int n) {
+int totalNQueens(int n) {
 
-	vector<vector<string>> ret;
+	int ret = 0;
 
 	string s(n, '.');
 	vector<string> vs;
@@ -120,7 +120,9 @@ vector<vector<string>> solveNQueens(int n) {
 		{
 			//DumpVectorOfStringByChar(vs);
 			if(cord.size() == n)
-				ret.push_back(vs);
+			{
+				++ ret;
+			}
 
 			if(cord.size())
 			{
@@ -132,18 +134,44 @@ vector<vector<string>> solveNQueens(int n) {
 				x --;
 				tmpy = y + 1;
 			}
-			//if(tmpy == n)
-			//	break;
 		}
 	}
 	return ret;
 }
 
-void SolveNQueensTest()
+void TotalNQueensTest()
 {
-	vector<vector<string>> ret;
+	int n;
+	int ret;
 
-	ret = solveNQueens(5);
+	cout << "test case 1" << endl;
+	n = 1;
+	ret = totalNQueens(n);
+	assert(ret == 1);
+	cout << ret << endl;
 
-	DumpVectorOfVectorOfStringByChar(ret);
+	cout << "test case 2" << endl;
+	n = 2;
+	ret = totalNQueens(n);
+	assert(ret == 0);
+	cout << ret << endl;
+
+	cout << "test case 3" << endl;
+	n = 3;
+	ret = totalNQueens(n);
+	assert(ret == 0);
+	cout << ret << endl;
+
+	cout << "test case 4" << endl;
+	n = 4;
+	ret = totalNQueens(n);
+	assert(ret == 2);
+	cout << ret << endl;
+
+	cout << "test case 5" << endl;
+	n = 5;
+	ret = totalNQueens(n);
+	assert(ret == 10);
+
+	cout << ret << endl;
 }

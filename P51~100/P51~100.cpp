@@ -9,6 +9,7 @@
 
 void P51_100()
 {
-	SolveNQueensTest();
+	TotalNQueensTest();
+	//SolveNQueensTest();
 }
 

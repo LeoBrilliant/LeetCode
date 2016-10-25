@@ -12,6 +12,8 @@
 
 // P51
 void SolveNQueensTest();
+// P52
+void TotalNQueensTest();
 
 void P51_100();
 
