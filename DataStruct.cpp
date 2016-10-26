@@ -7,7 +7,6 @@
 
 #include "DataStruct.h"
 
-
 ListNode * GenListFromVector(vector<int> & nums)
 {
 	if(nums.empty())

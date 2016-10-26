@@ -1,23 +1,24 @@
 /*
  * CommonHeaders.h
  *
- *  Created on: 2016Äê6ÔÂ23ÈÕ
+ *  Created on: 2016ï¿½ï¿½6ï¿½ï¿½23ï¿½ï¿½
  *      Author: user
  */
 
-#ifndef COMMONHEADERS_H_
-#define COMMONHEADERS_H_
+#ifndef BASICHEADERS_H_
+#define BASICHEADERS_H_
 
 
 #include <vector>
 #include <map>
 #include <set>
 #include <list>
-#include <assert.h>
+#include <cassert>
 #include <memory.h>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
 
-#endif /* COMMONHEADERS_H_ */
+#endif /* BASICHEADERS_H_ */

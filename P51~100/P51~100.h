@@ -10,15 +10,6 @@
 
 #include "..\Common.h"
 
-// P54
-void SpiralOrderTest();
-// P52
-void MaxSubArrayTest();
-// P51
-void SolveNQueensTest();
-// P52
-void TotalNQueensTest();
-
 void P51_100();
 
 #endif /* P51_100_H_ */

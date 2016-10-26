@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <vector>
+#include "DataStructures/Interval.h"
 
 using namespace std;
 
