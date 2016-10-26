@@ -7,12 +7,12 @@
 
 #include "P51~100.h"
 
-// P55
+// P56
 void MergeIntervalsTest();
 #ifdef ACCEPTED
 // P54
 void SpiralOrderTest();
-// P52
+// P53
 void MaxSubArrayTest();
 // P51
 void SolveNQueensTest();
