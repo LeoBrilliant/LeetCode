@@ -7,6 +7,8 @@
 
 #include "P51~100.h"
 
+// P60
+void GetPermutationTest();
 // P59
 void GenerateMatrixTest();
 // P55
@@ -28,13 +30,14 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	GenerateMatrixTest();
+	GetPermutationTest();
 
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	GenerateMatrixTest();
 	CanJumpTest();
 	InsertIntervalTest();
 	MergeIntervalsTest();
