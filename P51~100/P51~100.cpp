@@ -7,9 +7,13 @@
 
 #include "P51~100.h"
 
+// P59
+void GenerateMatrixTest();
+// P55
+void CanJumpTest();
+#ifdef ACCEPTED
 // P57
 void InsertIntervalTest();
-#ifdef ACCEPTED
 // P56
 void MergeIntervalsTest();
 // P54
@@ -24,13 +28,15 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	InsertIntervalTest();
+	GenerateMatrixTest();
 
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	CanJumpTest();
+	InsertIntervalTest();
 	MergeIntervalsTest();
 	SpiralOrderTest();
 	MaxSubArrayTest();
