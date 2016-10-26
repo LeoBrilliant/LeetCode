@@ -7,9 +7,11 @@
 
 #include "P51~100.h"
 
+// P57
+void InsertIntervalTest();
+#ifdef ACCEPTED
 // P56
 void MergeIntervalsTest();
-#ifdef ACCEPTED
 // P54
 void SpiralOrderTest();
 // P53
@@ -22,12 +24,17 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	MergeIntervalsTest();
+	InsertIntervalTest();
+
+}
+
+void Accepted()
+{
 #ifdef ACCEPTED
+	MergeIntervalsTest();
 	SpiralOrderTest();
 	MaxSubArrayTest();
 	TotalNQueensTest();
 	SolveNQueensTest();
 #endif
 }
-

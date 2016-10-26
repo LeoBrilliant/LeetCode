@@ -12,66 +12,45 @@ bool Comp(Interval & a, Interval & b)
 	return a.start == b.start ? a.end <= b.end : a.start < b.start ;
 }
 
-void ReverseInterval(Interval & i)
-{
-	if(i.start > i.end)
-	{
-		int t = i.start;
-		i.start = i.end;
-		i.end = t;
-	}
-}
-
-void QuickSortInterval(vector<Interval> & vi, int begin, int end)
-{
-	if(begin >= end)
-		return;
-
-	Interval pivot = vi[begin];
-
-	int i = begin;
-	int j = end;
-
-	while(i < j)
-	{
-		while(Comp(pivot, vi[j]) && i < j)
-			j -= 1;
-		vi[i].start = vi[j].start;
-		vi[i].end = vi[j].end;
-
-		while(Comp(vi[i], pivot) && i < j)
-			i += 1;
-
-		vi[j].start = vi[i].start;
-		vi[j].end = vi[i].end;
-	}
-
-	vi[i].start = pivot.start;
-	vi[i].end = pivot.end;
-
-	QuickSortInterval(vi, begin, i - 1);
-	QuickSortInterval(vi, i + 1, end);
-}
-
-vector<Interval> merge(vector<Interval>& intervals) {
+vector<Interval> insert(vector<Interval>& intervals, Interval newInterval) {
 	int n = intervals.size();
 
-	for(auto & i : intervals)
+	if(n < 1)
 	{
-		if(i.start > i.end)
-			ReverseInterval(i);;
+		intervals.push_back(newInterval);
+		return intervals;
 	}
-
-	if(n <= 1) return intervals;
 
 	vector<Interval> ret;
 
-	//sort(intervals.begin(), intervals.end(), Comp);
-
-	QuickSortInterval(intervals, 0, intervals.size() - 1);
-
-	for(auto & i : intervals)
+	bool merged = false;
+	for(size_t k = 0; k < intervals.size() || !merged;)
 	{
+		Interval i;
+		if(!merged)
+		{
+			if(k < intervals.size())
+			{
+				if(Comp(intervals[k], newInterval))
+					i = intervals[k++];
+				else
+				{
+					i = newInterval;
+					//k --;
+					merged = true;
+				}
+			}
+			else
+			{
+				i = newInterval;
+				merged = true;
+			}
+		}
+		else
+		{
+			i = intervals[k++];
+		}
+
 		if(ret.empty())
 		{
 			ret.push_back(i);
@@ -99,8 +78,68 @@ vector<Interval> merge(vector<Interval>& intervals) {
 	return ret;
 }
 
-vector<Interval> insert(vector<Interval>& intervals, Interval newInterval) {
-	intervals.push_back(newInterval);
-	return merge(intervals);
+void InsertIntervalTest()
+{
+	vector<Interval> vi;
+	Interval n;
+	vector<Interval> ret;
+
+	cout << "test case 1" << endl;
+	vi = {{1, 3}, {6, 9}};
+	n = {2, 5};
+	DumpVectorOfInterval(vi);
+	DumpInterval(n); cout << endl;
+	ret = insert(vi, n);
+	DumpVectorOfInterval(ret);
+
+	cout << "test case 2" << endl;
+	vi = {{1,2},{3,5},{6,7},{8,10},{12,16}};
+	n = {4, 9};
+	DumpVectorOfInterval(vi);
+	DumpInterval(n); cout << endl;
+	ret = insert(vi, n);
+	DumpVectorOfInterval(ret);
+
+	cout << "test case 3" << endl;
+	vi = {{1,5}};
+	n = {2, 7};
+	DumpVectorOfInterval(vi);
+	DumpInterval(n); cout << endl;
+	ret = insert(vi, n);
+	DumpVectorOfInterval(ret);
+
+	cout << "test case 4" << endl;
+	vi = {{3,5}};
+	n = {2, 7};
+	DumpVectorOfInterval(vi);
+	DumpInterval(n); cout << endl;
+	ret = insert(vi, n);
+	DumpVectorOfInterval(ret);
+
+	cout << "test case 5" << endl;
+	vi = {{3,5}};
+	n = {2, 2};
+	DumpVectorOfInterval(vi);
+	DumpInterval(n); cout << endl;
+	ret = insert(vi, n);
+	DumpVectorOfInterval(ret);
+
+	cout << "test case 6" << endl;
+	vi = {{3,5}};
+	n = {2, 3};
+	DumpVectorOfInterval(vi);
+	DumpInterval(n); cout << endl;
+	ret = insert(vi, n);
+	DumpVectorOfInterval(ret);
+
+	cout << "test case 7" << endl;
+	vi = {{3,5}};
+	n = {6, 8};
+	DumpVectorOfInterval(vi);
+	DumpInterval(n); cout << endl;
+	ret = insert(vi, n);
+	DumpVectorOfInterval(ret);
+
+	vi = {{1,3},{2,6},{8,10},{15,18}};
 }
 

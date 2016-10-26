@@ -7,7 +7,7 @@
 
 #include "P51~100.h"
 
-bool Comp(Interval & a, Interval & b)
+static bool Comp(Interval & a, Interval & b)
 {
 	return a.start == b.start ? a.end <= b.end : a.start < b.start ;
 }
