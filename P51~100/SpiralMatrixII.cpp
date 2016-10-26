@@ -14,9 +14,10 @@ vector<vector<int>> generateMatrix(int n) {
 	vector<vector<int>> matrix;
 	if(!w) return matrix;
 	int h = n;
+
+	vector<int> vi(n, 0);
 	for(int i = 0; i < n; ++i)
 	{
-		vector<int> vi(n, 0);
 		matrix.push_back(vi);
 	}
 
