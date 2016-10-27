@@ -70,36 +70,47 @@ string getPermutation(int n, int k) {
 	string s;
 	vector<int> fac{1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880};
 
-	int f = fac[n];
-
-
-	int curr;
 	int i;
 
-	vector<char> t, tmp;
+	if(n <= 1)
+		return "1";
+
+	string t;
+	// 初始化候选字符
 	for(i = 0; i < n; ++i)
 		t.push_back(all[i]);
 
+	if(k == 1)
+	{
+		for(auto c : t)
+			s.push_back(c);
+
+		return s;
+	}
+
+	// 搜索构建序列
 	for(i = n; i > 0; --i)
 	{
-		if(k >= fac[i - 1])
+		if(k > fac[i - 1])
 		{
 			int j = k / fac[i - 1];
-			s.push_back(t[j]);
+			int q = k % fac[i - 1];
+
+			if(!q)
+				j--;
+
+			char c ;
+			c = t[j];
+			s.push_back(c);
 			k = k - fac[i - 1] * j;
-			for(int m = 0; m < t.size(); ++ m)
-			{
-				if(m == j)
-					continue;
-				tmp.push_back(t[m]);
-			}
-			t = tmp;
+			t.erase(j, 1);
 		}
 		else
 		{
 			s.push_back(t[0]);
-			t.erase(t.begin());
+			t.erase(0, 1);
 		}
+
 		if(k >= fac[i])
 			break;
 	}
@@ -112,6 +123,7 @@ void GetPermutationTest()
 	string s;
 	int n;
 	int k;
+	string s2;
 
 	cout << "test case 1" << endl;
 	n = 0;
@@ -150,14 +162,26 @@ void GetPermutationTest()
 	cout << s << endl;
 
 	cout << "test case 7" << endl;
+	n = 3;
+	k = 6;
+	s = getPermutation(n, k);
+	s2 = AgetPermutation(n, k);
+	assert(s.compare(s2) == 0);
+	cout << s << endl;
+
+	cout << "test case 7" << endl;
 	n = 6;
 	k = 500;
 	s = getPermutation(n, k);
+	s2 = AgetPermutation(n, k);
+	assert(s.compare(s2) == 0);
 	cout << s << endl;
 
 	cout << "test case 8" << endl;
 	n = 9;
 	k = 300000;
 	s = getPermutation(n, k);
+	s2 = AgetPermutation(n, k);
+	assert(s.compare(s2) == 0);
 	cout << s << endl;
 }
