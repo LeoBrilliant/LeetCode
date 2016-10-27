@@ -7,15 +7,17 @@
 
 #include "P51~100.h"
 
+// P84
+void LargestRectangleAreaTest();
 // P70
 void ClimbStairsTest();
+#ifdef ACCEPTED
 // P60
 void GetPermutationTest();
 // P59
 void GenerateMatrixTest();
 // P55
 void CanJumpTest();
-#ifdef ACCEPTED
 // P57
 void InsertIntervalTest();
 // P56
@@ -32,14 +34,14 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	ClimbStairsTest();
-
+	LargestRectangleAreaTest();
 
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	ClimbStairsTest();
 	GetPermutationTest();
 	GenerateMatrixTest();
 	CanJumpTest();
