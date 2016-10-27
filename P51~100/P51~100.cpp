@@ -7,6 +7,8 @@
 
 #include "P51~100.h"
 
+// P70
+void ClimbStairsTest();
 // P60
 void GetPermutationTest();
 // P59
@@ -30,13 +32,15 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	GetPermutationTest();
+	ClimbStairsTest();
+
 
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	GetPermutationTest();
 	GenerateMatrixTest();
 	CanJumpTest();
 	InsertIntervalTest();
