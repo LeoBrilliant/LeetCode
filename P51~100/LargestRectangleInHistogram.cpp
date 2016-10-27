@@ -8,7 +8,7 @@
 #include "P51~100.h"
 
 // TLE
-int largestRectangleArea(vector<int>& heights) {
+int AlargestRectangleArea(vector<int>& heights) {
 	pair<int, int> curr;
 	vector<pair<int, int>> rect;
 	int minheight = 0, maxarea = 0;
@@ -69,7 +69,212 @@ int largestRectangleArea(vector<int>& heights) {
 	return maxarea;
 }
 
-void LargestRectangleAreaTest()
+struct Seq{
+	int begin;
+	int end;
+	int max;
+	Seq(): begin(0), end(0), max(0){}
+	Seq(int b, int e, int m) :  begin(b), end(e), max(m){}
+	Seq(Seq & s): begin(s.begin), end(s.end), max(s.max){}
+	void Dump(){
+		cout << "[" << begin << ", " << max << ", " << end << "]";
+	}
+};
+
+struct Area{
+	int index;
+	int begin;
+	int end;
+	int height;
+	int area;
+	Area(): index(0), begin(0), end(0), height(0), area(0) {}
+	Area(int i, int b, int e, int h, int a): index(i), begin(b), end(e), height(h), area(a){}
+	int GetArea()
+	{
+		return (end - begin + 1) * height;
+	}
+	void CalArea()
+	{
+		area = (end - begin + 1) * height;
+	}
+	void Dump()
+	{
+		cout << "[" << index;
+		cout << ", <" << begin << ", " << end << ">, ";
+		cout << height << ", " << area << "]";
+	}
+};
+
+
+void ALargestRectangleAreaTest()
+{
+	vector<int> vi;
+	int ret;
+
+	cout << "test case 1" << endl;
+	vi = {};
+	ret = AlargestRectangleArea(vi);
+	assert(ret == 0);
+	cout << ret << endl;
+
+	cout << "test case 2" << endl;
+	vi = {4};
+	ret = AlargestRectangleArea(vi);
+	assert(ret == 4);
+	cout << ret << endl;
+
+	cout << "test case 3" << endl;
+	vi = {2,1,5,6,2,3};
+	ret = AlargestRectangleArea(vi);
+	assert(ret == 10);
+	cout << ret << endl;
+
+	cout << "test case 3" << endl;
+	vi = {1, 2, 3, 4, 5};
+	ret = AlargestRectangleArea(vi);
+	assert(ret == 9);
+	cout << ret << endl;
+
+	cout << "test case 4" << endl;
+	vi = {};
+	for(int i = 0; i < 20000; ++i)
+		vi.push_back(i);
+	ret = AlargestRectangleArea(vi);
+	assert(ret == 100000000);
+	cout << ret << endl;
+}
+
+int largestRectangleArea(vector<int>& heights)
+{
+	bool desc = true;
+	int max = 0;
+	int left = 0, right = -1;
+	vector<Seq> seq;
+	// 计算分段
+	for(int i = 0; i < heights.size(); ++i)
+	{
+		if(desc)
+		{
+			if(i == heights.size() || heights[i] < heights[i + 1])
+			{
+				if(i)
+				{
+					right = i;
+					Seq s(left, right, max);
+					seq.push_back(s);
+					left = right + 1;
+					max = 0;
+				}
+				desc = false;
+			}
+			else
+			{
+				if(heights[i] > heights[max])
+					max = i;
+			}
+		}
+		else
+		{
+			if(right == i - 1)
+				left = i;
+
+			if(i == heights.size() || heights[i] > heights[i + 1])
+			{
+				desc = true;
+				if(heights[i] > max)
+					max = i;
+			}
+		}
+	}
+
+	if(right != heights.size() - 1)
+	{
+		right = heights.size() - 1;
+		if(heights[right] > heights[max])
+			max = right;
+		Seq s(left, right, max);
+		seq.push_back(s);
+	}
+
+	for(auto s : seq)
+	{
+		s.Dump();
+	}
+	cout << endl;
+
+
+	vector<Area> area;
+	// 计算面积
+	for(int i = 0; i < seq.size(); ++i)
+	{
+		Seq currseq = seq[i];
+		int maxarea = 0;
+		int currarea;
+		int currindex;
+		int left, right;
+		int count = currseq.end - currseq.begin + 1;
+		for(int i = 0; i < count; ++i)
+		{
+			// 单边搜索、左右两边搜索
+			if(i == 0)
+			{
+				currindex = currseq.max;
+				currarea = heights[currseq.max] * (right - left + 1);
+				if(currindex != currseq.begin)
+				{
+					left = currindex - 1;
+				}
+				else
+				{
+					left = currindex;
+				}
+
+				if(currindex != currseq.end)
+				{
+					right = currindex + 1;
+				}
+				else
+				{
+					right = currindex;
+				}
+			}
+			else
+			{
+				if(right != currseq.end)
+				{
+					if(heights[right] >= heights[left])
+					{
+						currindex = right++;
+					}
+					else
+					{
+						currindex = left--;
+					}
+				}
+				else if(left != currseq.begin)
+				{
+					if(heights[left] >= heights[right])
+					{
+						currindex = left--;
+					}
+					else
+					{
+						currindex = right++;
+					}
+				}
+			}
+
+			if(heights[left] > heights[right])
+			{
+				currindex = left;
+				currarea = heights[currindex] * (currindex - right + 1);
+			}
+		}
+	}
+	return 0;
+}
+
+void BLargestRectangleAreaTest()
 {
 	vector<int> vi;
 	int ret;
@@ -77,27 +282,48 @@ void LargestRectangleAreaTest()
 	cout << "test case 1" << endl;
 	vi = {};
 	ret = largestRectangleArea(vi);
+	assert(ret == 0);
 	cout << ret << endl;
 
 	cout << "test case 2" << endl;
 	vi = {4};
 	ret = largestRectangleArea(vi);
+	//assert(ret == 4);
 	cout << ret << endl;
 
 	cout << "test case 3" << endl;
 	vi = {2,1,5,6,2,3};
 	ret = largestRectangleArea(vi);
-	cout << ret << endl;
-
-	cout << "test case 3" << endl;
-	vi = {1, 2, 3, 4, 5};
-	ret = largestRectangleArea(vi);
+	//assert(ret == 10);
 	cout << ret << endl;
 
 	cout << "test case 4" << endl;
-	vi = {};
-	for(int i = 0; i < 20000; ++i)
-		vi.push_back(i);
+	vi = {1, 2, 3, 4, 5};
 	ret = largestRectangleArea(vi);
+	//assert(ret == 9);
 	cout << ret << endl;
+
+	cout << "test case 5" << endl;
+	vi = {5, 4, 3, 2, 1};
+	ret = largestRectangleArea(vi);
+	//assert(ret == 9);
+	cout << ret << endl;
+
+	cout << "test case 6" << endl;
+	vi = {1, 2, 1, 4, 2};
+	ret = largestRectangleArea(vi);
+	//assert(ret == 9);
+	cout << ret << endl;
+
+	cout << "test case 7" << endl;
+	vi = {3, 2, 1, 2, 3, 4, 3, 5, 6, 4, 3, 4, 2, 1};
+	ret = largestRectangleArea(vi);
+	//assert(ret == 9);
+	cout << ret << endl;
+
+}
+
+void LargestRectangleAreaTest()
+{
+	BLargestRectangleAreaTest();
 }
