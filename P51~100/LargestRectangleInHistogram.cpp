@@ -89,6 +89,8 @@ struct Area{
 	int area;
 	Area(): index(0), begin(0), end(0), height(0), area(0) {}
 	Area(int i, int b, int e, int h, int a): index(i), begin(b), end(e), height(h), area(a){}
+	Area(Area & a): index(a.index), begin(a.begin), end(a.end), height(a.height), area(a.area) {}
+
 	int GetArea()
 	{
 		return (end - begin + 1) * height;
@@ -144,7 +146,9 @@ void ALargestRectangleAreaTest()
 	cout << ret << endl;
 }
 
-int largestRectangleArea(vector<int>& heights)
+// 这个方法写不下去了，因为觉得还是太复杂，没法达到O(n)的要求
+/*
+int BlargestRectangleArea(vector<int>& heights)
 {
 	bool desc = true;
 	int max = 0;
@@ -205,16 +209,61 @@ int largestRectangleArea(vector<int>& heights)
 
 	vector<Area> area;
 	// 计算面积
+	Area MaxArea;
+	MaxArea.begin = MaxArea.end = 0;
+	MaxArea.height = heights[0];
+	MaxArea.index = 0;
+	MaxArea.CalArea();
+	Area MaxRightWidthArea(MaxArea);
+	//vector<Area> MaxRightHeightArea;
 	for(int i = 0; i < seq.size(); ++i)
 	{
 		Seq currseq = seq[i];
-		int maxarea = 0;
-		int currarea;
+		Area maxarea;
+		maxarea.begin = maxarea.end = currseq.max;
+		maxarea.height = heights[currseq.max];
+		maxarea.CalArea();
+		maxarea.index = currseq.max;
+
+		Area currarea;
 		int currindex;
 		int left, right;
 		int count = currseq.end - currseq.begin + 1;
-		for(int i = 0; i < count; ++i)
+		left = right = currseq.max;
+		bool walkleft = true, walkright = true;
+		for(int j = 0; j < count; ++j)
 		{
+			if(left == currseq.begin)
+			{
+				walkleft = false;
+			}
+			if(right == currseq.end)
+			{
+				walkright = false;
+			}
+
+			if(walkleft && !walkright)
+			{
+				currindex = --left;
+				currarea = (right - left + 1) * heights[currindex];
+			}
+			else if(!walkleft && walkright)
+			{
+				currindex = ++right;
+				currarea = (right - left + 1) * heights[currindex];
+			}
+			else if(walkleft && walkright)
+			{
+				if(heights[left - 1] >= heights[right + 1])
+				{
+					currindex = --left;
+				}
+				else
+				{
+					currindex = ++ right;
+				}
+				currarea = (right - left + 1) * heights[currindex];
+			}
 			// 单边搜索、左右两边搜索
 			if(i == 0)
 			{
@@ -273,7 +322,36 @@ int largestRectangleArea(vector<int>& heights)
 	}
 	return 0;
 }
+*/
 
+int largestRectangleArea(vector<int>& heights)
+{
+	int ret  = 0;
+	stack<int> si;
+	for(int i = 0; i < heights.size(); ++i)
+	{
+		while(!si.empty() && heights[si.top()] >= heights[i])
+		{
+			int h = heights[si.top()];
+			si.pop();
+
+			int area = h * (si.empty() ? i : (i - si.top() - 1));
+			ret = max(ret, area);
+		}
+
+		si.push(i);
+	}
+
+	while(!si.empty())
+	{
+		int h = heights[si.top()];
+		si.pop();
+		int area = h * (si.empty() ? heights.size() : (heights.size() - si.top() - 1));
+		ret = max(ret, area);
+	}
+
+	return ret;
+}
 void BLargestRectangleAreaTest()
 {
 	vector<int> vi;
