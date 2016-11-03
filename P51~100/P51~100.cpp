@@ -6,7 +6,8 @@
  */
 
 #include "P51~100.h"
-
+// P440
+void FindKthNumberTest();
 // P84
 void LargestRectangleAreaTest();
 // P70
@@ -34,13 +35,14 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	LargestRectangleAreaTest();
+	FindKthNumberTest();
 
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	LargestRectangleAreaTest();
 	ClimbStairsTest();
 	GetPermutationTest();
 	GenerateMatrixTest();
