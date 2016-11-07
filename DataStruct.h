@@ -51,4 +51,6 @@ void DumpVectorOfVector(vector<vector<T>> & vvt)
 void DumpVectorOfStringByChar(vector<string> & vs);
 void DumpVectorOfVectorOfStringByChar(vector<vector<string>> & vvs);
 
+void VectorStringToVectorOfVectorOfChar(vector<string> & vs, vector<vector<char>> & vvc);
+
 #endif /* DATASTRUCT_H_ */

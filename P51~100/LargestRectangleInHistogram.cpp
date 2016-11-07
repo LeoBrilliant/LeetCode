@@ -352,6 +352,7 @@ int largestRectangleArea(vector<int>& heights)
 
 	return ret;
 }
+
 void BLargestRectangleAreaTest()
 {
 	vector<int> vi;
