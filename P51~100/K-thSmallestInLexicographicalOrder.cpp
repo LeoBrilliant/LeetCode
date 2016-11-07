@@ -7,10 +7,28 @@
 
 #include "P51~100.h"
 
+int getNodeCount(vector<int> & level, vector<int> & counter, int height)
+{
+	int ret = 0;
+
+	for(int i = height; i < level.size(); ++i)
+	{
+		if(level[i] >= counter[i - height])
+		{
+			ret += counter[i - height];
+		}
+		else
+		{
+			ret += level[i];
+		}
+	}
+
+	return ret;
+}
+
 int findKthNumber(int n, int k) {
 	vector<int> ruler{9, 90, 900, 9000, 90000, 900000, 9000000, 90000000, 900000000};
-	vector<int> counter{1, 11, 111, 1111, 11111, 111111, 1111111, 11111111, 111111111};
-	vector<int> num{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+	vector<int> counter{1,  10,  100,  1000,  10000,  100000,  1000000,  10000000,  100000000};
 
 	vector<int> level;
 	vector<int> digits;
@@ -33,32 +51,46 @@ int findKthNumber(int n, int k) {
 
 	int curr = 0;
 	int count = 0;
-	for(int i = height; k > 0 && i > 0; --i)
+
+	int d = 0;
+	while(k > 0)
 	{
-		for(int j = 0; j < i; ++ j)
+		//vector<int> tree;
+		count = getNodeCount(level, counter, curr);
+		d ++;
+		if(k > count)
 		{
-			count += level[j];
-		}
-		curr = k / count;
-		if(i == height)
-		{
-			digits.push_back(num[curr + 1]);
-			if(curr == 0)
+			for(int i = curr; i < level.size(); ++i)
 			{
-				k = k - 1;
+				if(level[i] >= counter[i - curr])
+				{
+					level[i] -= counter[i - curr];
+				}
+				else
+				{
+					level[i] = 0;
+				}
 			}
-			else
-			{
-				k = k - (curr) * counter[height - i];
-			}
+			k -= count;
 		}
 		else
 		{
-			digits.push_back(num[curr - 1]);
-			k = k - curr * counter[height - i];
+			if(curr == 0)
+			{
+				digits.push_back(d);
+			}
+			else
+			{
+				digits.push_back(d - 1);
+			}
+
+			curr ++;
+			k -= 1;
+			d = 0;
 		}
 	}
 
+	// 拼接具体数字
 	int ret = 0;
 	for(auto i : digits)
 	{
@@ -86,6 +118,69 @@ void FindKthNumberTest()
 	k = 6;
 	ret = findKthNumber(n, k);
 	//assert(ret == 1);
+	cout << ret << endl;
+
+	cout << "test case 3" << endl;
+	n = 13;
+	k = 1;
+	ret = findKthNumber(n, k);
+	assert(ret == 1);
+	cout << ret << endl;
+
+	cout << "test case 4" << endl;
+	n = 13;
+	k = 5;
+	ret = findKthNumber(n, k);
+	assert(ret == 13);
+	cout << ret << endl;
+
+	cout << "test case 5" << endl;
+	n = 13;
+	k = 13;
+	ret = findKthNumber(n, k);
+	assert(ret == 9);
+	cout << ret << endl;
+
+	cout << "test case 6" << endl;
+	n = 9;
+	k = 1;
+	ret = findKthNumber(n, k);
+	assert(ret == 1);
+	cout << ret << endl;
+
+	cout << "test case 7" << endl;
+	n = 9;
+	k = 9;
+	ret = findKthNumber(n, k);
+	assert(ret == 9);
+	cout << ret << endl;
+
+	cout << "test case 8" << endl;
+	n = 100;
+	k = 10;
+	ret = findKthNumber(n, k);
+	assert(ret == 17);
+	cout << ret << endl;
+
+	cout << "test case 9" << endl;
+	n = 100;
+	k = 100;
+	ret = findKthNumber(n, k);
+	assert(ret == 99);
+	cout << ret << endl;
+
+	cout << "test case 10" << endl;
+	n = 100;
+	k = 2;
+	ret = findKthNumber(n, k);
+	assert(ret == 10);
+	cout << ret << endl;
+
+	cout << "test case 11" << endl;
+	n = 100;
+	k = 3;
+	ret = findKthNumber(n, k);
+	assert(ret == 100);
 	cout << ret << endl;
 }
 
