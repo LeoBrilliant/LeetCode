@@ -6,6 +6,8 @@
  */
 
 #include "P51~100.h"
+// P61
+void RotateRightTest();
 // P440
 void FindKthNumberTest();
 // P85
@@ -37,12 +39,13 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	MaximalRectangleTest();
+	RotateRightTest();
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	MaximalRectangleTest();
 	FindKthNumberTest();
 	LargestRectangleAreaTest();
 	ClimbStairsTest();
