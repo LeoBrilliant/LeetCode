@@ -6,6 +6,8 @@
  */
 
 #include "P51~100.h"
+// P64
+void MinPathSumTest();
 // P63
 void UniquePathsIITest();
 // P62
@@ -43,12 +45,13 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	UniquePathsIITest();
+	MinPathSumTest();
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	UniquePathsIITest();
 	UniquePathsTest();
 	RotateRightTest();
 	MaximalRectangleTest();
