@@ -7,9 +7,89 @@
 
 #include "P51~100.h"
 
+string simplifyPath(string path) {
+	string ret;
+	char last;
+	int counter = 0;
+
+	path += "/";
+
+	for(int i = 0; i < path.length(); ++i)
+	{
+		if(path[i] == '.')
+		{
+			counter++;
+		}
+		else
+		{
+			if((counter == 1 || counter == 2) && path[i] == '/')
+			{
+				if(counter == 1)
+				{
+
+				}
+				else if(counter == 2)
+				{
+					// 回溯
+					if(ret.size() > 1)
+					{
+						ret.erase(ret.size() - 1, 1);
+					}
+					char c = ret[ret.size() - 1];
+					while(c != '/')
+					{
+						ret.erase(ret.size() - 1, 1);
+						c = ret[ret.size() - 1];
+					}
+
+					if(ret.size() > 1)
+					{
+						ret.erase(ret.size() - 1, 1);
+						last = ret[ret.size() - 1];
+					}
+					else
+					{
+						last = '/';
+					}
+				}
+				counter = 0;
+			}
+			else //if(path[i] != '/')
+			{
+				for(int j = 0; j < counter; ++j)
+					ret.push_back('.');
+				counter = 0;
+			}
+
+			if(path[i] == '/')
+			{
+				if(!ret.empty() && i == path.size() - 1)
+					continue;
+
+				if(last != '/')
+				{
+					ret.push_back(path[i]);
+					last = path[i];
+				}
+			}
+			else
+			{
+				ret.push_back(path[i]);
+				last = path[i];
+			}
+		}
+	}
+
+	if(ret.size() > 1 && ret[ret.size() - 1] == '/')
+	{
+		ret.erase(ret.size() - 1, 1);
+	}
+
+	return ret;
+}
+
 
 string AsimplifyPath(string path) {
-
 	string ret;
 	char last;
 	for(int i = 0; i < path.length(); ++i)
@@ -97,7 +177,7 @@ vector<string> split(string str)
 	return ret;
 }
 
-string simplifyPath(string path)
+string CsimplifyPath(string path)
 {
 	vector<string> v = split(path);
 	stack<string> stk;
@@ -174,16 +254,37 @@ void SimplifyPathTest()
 	cout << "test case 7" << endl;
 	path = "/a/./b/../../c/";
 	ret = simplifyPath(path);
+	assert(ret.compare("/c") == 0);
 	cout << ret << endl;
 
 	cout << "test case 8" << endl;
 	path = "/home/";
 	ret = simplifyPath(path);
+	assert(ret.compare("/home") == 0);
 	cout << ret << endl;
 
 	cout << "test case 9" << endl;
 	path = "/.../";
 	ret = simplifyPath(path);
+	assert(ret.compare("/...") == 0);
+	cout << ret << endl;
+
+	cout << "test case 10" << endl;
+	path = "/...";
+	ret = simplifyPath(path);
+	assert(ret.compare("/...") == 0);
+	cout << ret << endl;
+
+	cout << "test case 11" << endl;
+	path = "/...////";
+	ret = simplifyPath(path);
+	assert(ret.compare("/...") == 0);
+	cout << ret << endl;
+
+	cout << "test case 12" << endl;
+	path = "/..honey/";
+	ret = simplifyPath(path);
+	assert(ret.compare("/..honey") == 0);
 	cout << ret << endl;
 
 }
