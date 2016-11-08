@@ -6,6 +6,8 @@
  */
 
 #include "P51~100.h"
+// P73
+void SetZeroesTest();
 // P71
 void SimplifyPathTest();
 // P61
@@ -41,7 +43,8 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	SimplifyPathTest();
+	SetZeroesTest();
+	//SimplifyPathTest();
 }
 
 void Accepted()
