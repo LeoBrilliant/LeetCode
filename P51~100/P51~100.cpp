@@ -6,6 +6,8 @@
  */
 
 #include "P51~100.h"
+// P71
+void SimplifyPathTest();
 // P61
 void RotateRightTest();
 // P440
@@ -39,7 +41,7 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	RotateRightTest();
+	SimplifyPathTest();
 }
 
 void Accepted()
