@@ -6,6 +6,10 @@
  */
 
 #include "P51~100.h"
+// P81
+void SearchTest();
+// P80
+void RemoveDuplicatesTest();
 // P78
 void SubsetsTest();
 // P77
@@ -58,12 +62,14 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	SubsetsTest();
+	SearchTest();
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	RemoveDuplicatesTest();
+	SubsetsTest();
 	CombineTest();
 	SearchMatrixTest();
 	MySqrtTest();
