@@ -6,6 +6,8 @@
  */
 
 #include "P51~100.h"
+// P74
+void SearchMatrixTest();
 // P69
 void MySqrtTest();
 // P67
@@ -52,12 +54,13 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	MySqrtTest();
+	SearchMatrixTest();
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	MySqrtTest();
 	AddBinaryTest();
 	PlusOneTest();
 	MinPathSumTest();
