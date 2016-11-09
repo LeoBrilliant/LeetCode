@@ -47,15 +47,15 @@ bool searchA(vector<int> & nums, int target)
 
 	if(pivot == -1)
 	{
-		index = binarySearch(nums, 0, nums.size() - 1, target);
+		index = binarySearchA(nums, 0, nums.size() - 1, target);
 	}
 	else
 	{
 		if(target >= nums[0])
-			index = binarySearch(nums, 0, pivot, target);
+			index = binarySearchA(nums, 0, pivot, target);
 		//if(index == -1)
 		else
-			index = binarySearch(nums, pivot + 1, nums.size() - 1, target);
+			index = binarySearchA(nums, pivot + 1, nums.size() - 1, target);
 	}
 
 
