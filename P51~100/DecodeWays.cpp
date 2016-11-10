@@ -50,7 +50,7 @@ int AnumDecodings(string s) {
 	return count;
 }
 
-int numDecodings(string s) {
+int BnumDecodings(string s) {
 
 	if(s.length() == 0)
 		return s.length();
@@ -78,6 +78,57 @@ int numDecodings(string s) {
 		}
 
 		if(dic.find(s.substr(i - 1, 2))  != dic.end())
+		{
+			fn += fn_2;
+		}
+
+		fn_2 = fn_1;
+		fn_1 = fn;
+	}
+	return fn;
+}
+
+bool find(string  s)
+{
+	if(s[0] == '0')
+		return false;
+
+	int curr = 0;
+	for(int i = 0; i < s.size(); ++i)
+	{
+		curr *= 10;
+		curr += s[i] - '0';
+	}
+
+	if(curr > 0 && curr <= 26)
+		return true;
+
+	return false;
+}
+
+int numDecodings(string s) {
+
+	if(s.length() == 0)
+		return s.length();
+
+	int fn = 0;
+	int fn_1 = 0;
+	if(find(s.substr(0, 1)))
+		fn_1 = 1;
+
+	fn = fn_1;
+
+	int fn_2 = 1;
+
+	for(int i = 1; i < s.length(); ++i)
+	{
+		fn = 0;
+		if(find(s.substr(i, 1)))
+		{
+			fn += fn_1;
+		}
+
+		if(find(s.substr(i - 1, 2)))
 		{
 			fn += fn_2;
 		}
@@ -120,6 +171,12 @@ void DecodeWaysTest()
 	cout << "test case 5" << endl;
 	s = "4757562545844617494555774581341211511296816786586787755257741178599337186486723247528324612117156948";
 	ret = numDecodings(s);
-	//assert(ret == 3);
+	assert(ret == 589824);
+	cout << ret << endl;
+
+	cout << "test case 6" << endl;
+	s = "0";
+	ret = numDecodings(s);
+	assert(ret == 0);
 	cout << ret << endl;
 }
