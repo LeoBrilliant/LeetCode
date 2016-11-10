@@ -1,5 +1,5 @@
 /*
- * RemoveDuplicatesFromSortedListII.cpp
+ * RemoveDuplicatesFromSortedList.cpp
  *
  *  Created on: 2016年11月10日
  *      Author: user
@@ -8,45 +8,36 @@
 #include "P51~100.h"
 
 
-static ListNode* deleteDuplicates(ListNode* head) {
+ListNode* deleteDuplicates(ListNode* head) {
 	if(!head)
 		return head;
 
-	ListNode * Insert = NULL, * Scan, *curr, * ret = NULL;
+	ListNode * Scan;
 	Scan = head;
 
 	while(Scan)
 	{
-		curr = Scan;
-		Scan = Scan->next;
-		while(Scan && curr->val == Scan->val)
-			Scan = Scan->next;
-
-		if(curr->next == Scan)
+		if(Scan->next)
 		{
-			if(!Insert)
+			if(Scan->val == Scan->next->val)
 			{
-				Insert = curr;
-				ret = curr;
+				Scan->next = Scan->next->next;
 			}
 			else
 			{
-				Insert->next = curr;
+				Scan = Scan->next;
 			}
-			Insert = curr;
-			Scan = Insert->next;
-			Insert->next = NULL;
 		}
 		else
 		{
-			continue;
+			break;
 		}
 	}
 
-	return ret;
+	return head;
 }
 
-void DeleteDuplicatesTest()
+void DeleteDuplicatesTestII()
 {
 	ListNode * head;
 	vector<int> vi;
@@ -101,3 +92,7 @@ void DeleteDuplicatesTest()
 	assert(ret == head);
 	DumpListNode(ret);
 }
+
+
+
+

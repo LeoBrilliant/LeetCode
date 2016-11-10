@@ -6,6 +6,12 @@
  */
 
 #include "P51~100.h"
+// P86
+void PartitionListTest();
+// P89
+void GrayCodeTest();
+// P83
+void DeleteDuplicatesTestII();
 // P82
 void DeleteDuplicatesTest();
 // P81
@@ -64,12 +70,15 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	DeleteDuplicatesTest();
+	PartitionListTest();
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	GrayCodeTest();
+	DeleteDuplicatesTestII();
+	DeleteDuplicatesTest();
 	SearchTest();
 	RemoveDuplicatesTest();
 	SubsetsTest();
