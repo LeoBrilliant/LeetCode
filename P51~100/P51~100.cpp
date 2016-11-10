@@ -6,6 +6,8 @@
  */
 
 #include "P51~100.h"
+// P90
+void SubsetsIITest();
 // P73
 void SetZeroesTest();
 // P71
@@ -43,13 +45,14 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	SetZeroesTest();
-	//SimplifyPathTest();
+	SubsetsIITest();
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	SetZeroesTest();
+	SimplifyPathTest();
 	MaximalRectangleTest();
 	FindKthNumberTest();
 	LargestRectangleAreaTest();
