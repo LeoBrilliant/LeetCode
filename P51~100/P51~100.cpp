@@ -6,6 +6,8 @@
  */
 
 #include "P51~100.h"
+// P82
+void DeleteDuplicatesTest();
 // P81
 void SearchTest();
 // P80
@@ -62,12 +64,13 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	SearchTest();
+	DeleteDuplicatesTest();
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	SearchTest();
 	RemoveDuplicatesTest();
 	SubsetsTest();
 	CombineTest();
