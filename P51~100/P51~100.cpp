@@ -6,6 +6,10 @@
  */
 
 #include "P51~100.h"
+// P91
+void DecodeWaysTest();
+// P88
+void MergeSortedArrayTest();
 // P86
 void PartitionListTest();
 // P89
@@ -70,12 +74,14 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	PartitionListTest();
+	DecodeWaysTest();
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	MergeSortedArrayTest();
+	PartitionListTest();
 	GrayCodeTest();
 	DeleteDuplicatesTestII();
 	DeleteDuplicatesTest();
