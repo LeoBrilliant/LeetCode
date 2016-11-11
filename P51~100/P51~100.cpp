@@ -6,6 +6,8 @@
  */
 
 #include "P51~100.h"
+// P191
+void NumberOf1BitsTest();
 // P91
 void DecodeWaysTest();
 // P88
@@ -74,12 +76,13 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	DecodeWaysTest();
+	NumberOf1BitsTest();
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	DecodeWaysTest();
 	MergeSortedArrayTest();
 	PartitionListTest();
 	GrayCodeTest();
