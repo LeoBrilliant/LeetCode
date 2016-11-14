@@ -6,6 +6,8 @@
  */
 
 #include "P51~100.h"
+// P94
+void BinaryTreeTest();
 // P93
 void RestoreIPAddressesTest();
 // P92
@@ -80,12 +82,13 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	RestoreIPAddressesTest();
+	BinaryTreeTest();
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	RestoreIPAddressesTest();
 	ReverseLinkedListIITest();
 	NumberOf1BitsTest();
 	DecodeWaysTest();

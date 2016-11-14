@@ -105,4 +105,20 @@ void RestoreIPAddressesTest()
 	allips = restoreIpAddresses(ip);
 	assert(allips.size() == 2);
 	DumpVector(allips);
+
+	map<int, int> mii = {{1, 1}, {2, 2}, {3, 3}, {4, 4}};
+
+	for(auto m : mii)
+	{
+		cout << "(" << m.first << ", " << m.second << "), ";
+	}
+	cout << endl;
+
+	mii = {{5, 5}, {1, 1}, {0, 0}, {3, 3}, {4, 4}, {2, 2}};
+
+	for(auto m : mii)
+	{
+		cout << "(" << m.first << ", " << m.second << "), ";
+	}
+	cout << endl;
 }
