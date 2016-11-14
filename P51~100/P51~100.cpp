@@ -6,6 +6,10 @@
  */
 
 #include "P51~100.h"
+// P93
+void RestoreIPAddressesTest();
+// P92
+void ReverseLinkedListIITest();
 // P191
 void NumberOf1BitsTest();
 // P91
@@ -76,12 +80,14 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	NumberOf1BitsTest();
+	RestoreIPAddressesTest();
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	ReverseLinkedListIITest();
+	NumberOf1BitsTest();
 	DecodeWaysTest();
 	MergeSortedArrayTest();
 	PartitionListTest();
