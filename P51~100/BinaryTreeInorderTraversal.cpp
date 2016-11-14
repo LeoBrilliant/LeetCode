@@ -7,8 +7,99 @@
 
 #include "P51~100.h"
 
-vector<int> inorderTraversal(TreeNode* root) {
+struct TravelHelper{
+	TreeNode * node;
+	int mode; // 0 - leaf, 1 - RightChild, 2 - LeftChild, 3 - Both Child
+	bool visited;
+	TravelHelper() : node(NULL), mode(0), visited(0){}
+	TravelHelper(TreeNode * node, int mode, bool visited) : node(node), mode(mode), visited(visited) {}
+};
 
+enum NextMove{
+	Waiting, TravelsalLeft, TravelsalRoot, TravelsalRight, TravelsalUpperRoot
+};
+
+vector<int> inorderTraversal(TreeNode* root) {
+	vector<int> ret;
+
+	if(!root)
+		return ret;
+
+	deque<TravelHelper*> buffer;
+	TreeNode * curr = NULL;
+	TravelHelper * tmp;
+	NextMove inst;
+	tmp = new TravelHelper(root, 0, false);
+	if(root->left) tmp->mode |= 2;
+	if(root->right) tmp->mode |= 1;
+	//tmp->visited = false;
+	buffer.push_back(tmp);
+
+
+	inst = Waiting;
+	while(!buffer.empty())
+	{
+		switch(inst)
+		{
+		case Waiting:
+			tmp = buffer.front();
+			break;
+		case TravelsalLeft:
+			tmp = buffer.front();
+			break;
+		case TravelsalRight:
+			tmp = buffer.back();
+			break;
+		case TravelsalRoot:
+			tmp = buffer.front();
+			break;
+		case TravelsalUpperRoot:
+			tmp = buffer.front();
+			break;
+		}
+
+		curr = tmp->node;
+
+		if(!tmp->visited) {
+			if(curr->left && curr->right){
+				tmp->mode |= 3;
+				TravelHelper * left = new TravelHelper(curr->left, 0, false);
+				buffer.push_front(left);
+				TravelHelper * right = new TravelHelper(curr->right, 0, false);
+				buffer.push_back(right);
+				tmp->visited = true;
+				inst = TravelsalLeft;
+			}
+			else if(curr->left && !curr->right){
+				tmp->mode |= 2;
+				TravelHelper * left = new TravelHelper(curr->left, 0, false);
+				buffer.push_back(left);
+				tmp->visited = true;
+				inst = TravelsalLeft;
+			}
+			else if(!curr->left && curr->right){
+				tmp->mode |= 1;
+				TravelHelper * right = new TravelHelper(curr->right, 0, false);
+				buffer.push_back(right);
+				inst = TravelsalRight;
+				ret.push_back(curr->val);
+				buffer.pop_front();
+			}
+			else if(curr->left == NULL || curr->right == NULL)
+			{
+				ret.push_back(curr->val);
+				buffer.pop_front();
+				inst = TravelsalUpperRoot;
+			}
+		}
+		else
+		{
+			ret.push_back(curr->val);
+
+		}
+	}
+
+	return ret;
 }
 
 
