@@ -19,7 +19,7 @@ enum NextMove{
 	Waiting, TravelsalLeft, TravelsalRoot, TravelsalRight, TravelsalUpperRoot
 };
 
-vector<int> inorderTraversal(TreeNode* root) {
+vector<int> AinorderTraversal(TreeNode* root) {
 	vector<int> ret;
 
 	if(!root)
@@ -103,6 +103,48 @@ vector<int> inorderTraversal(TreeNode* root) {
 }
 
 
+vector<int> inorderTraversal(TreeNode* root) {
+	vector<int> ret;
+
+	if(!root)
+		return ret;
+
+	pair<TreeNode*, bool> flag;
+	stack<pair<TreeNode*, bool>> helper;
+	TreeNode * curr = root;
+
+	flag = make_pair(curr, false);
+	helper.push(flag);
+
+	while(!helper.empty())
+	{
+		flag = helper.top();
+		curr = flag.first;
+
+		if(!flag.second && curr->left)
+		{
+			helper.top().second = true;
+			curr = curr->left;
+			flag = make_pair(curr, false);
+			helper.push(flag);
+		}
+		else if(curr->right) {
+			ret.push_back(curr->val);
+			curr = curr->right;
+			flag = make_pair(curr, false);
+			helper.pop();
+			helper.push(flag);
+		}
+		else
+		{
+			ret.push_back(curr->val);
+			helper.pop();
+		}
+	}
+
+	return ret;
+}
+
 void BinaryTreeTest()
 {
 	TreeNode * root = NULL;
@@ -158,4 +200,56 @@ void BinaryTreeTest()
 	PreOrderTraversal(root);
 	PostOrderTraversal(root);
 	BreadthTraversal(root);
+}
+
+void InOrderTraversalTest()
+{
+	TreeNode * root = NULL;
+	map<int, int> nodes;
+	vector<int> ret;
+
+	cout << "test case 1" << endl;
+	nodes = {{5, 5}, {1, 1}, {3, 3}, {4, 4}, {2, 2}, {6, 6}, {7, 7}};
+	root = GenBinaryTreeFromMap(nodes);
+	assert(root != NULL);
+	ret = inorderTraversal(root);
+	assert(ret.size() == 7);
+	InOrderTraversal(root);
+	DumpVector(ret);
+
+	cout << "test case 2" << endl;
+	nodes = {};
+	root = GenBinaryTreeFromMap(nodes);
+	assert(root == NULL);
+	ret = inorderTraversal(root);
+	assert(ret.size() == 0);
+	InOrderTraversal(root);
+	DumpVector(ret);
+
+	cout << "test case 3" << endl;
+	nodes = {{1, 1}, {2, 2}, {4, 4}, {8, 8}, {16, 16}};
+	root = GenBinaryTreeFromMap(nodes);
+	assert(root != NULL);
+	ret = inorderTraversal(root);
+	assert(ret.size() == 5);
+	InOrderTraversal(root);
+	DumpVector(ret);
+
+	cout << "test case 4" << endl;
+	nodes = {{1, 1}, {3, 3}, {7, 7}, {15, 15}, {31, 31}};
+	root = GenBinaryTreeFromMap(nodes);
+	assert(root != NULL);
+	ret = inorderTraversal(root);
+	assert(ret.size() == 5);
+	InOrderTraversal(root);
+	DumpVector(ret);
+
+	cout << "test case 5" << endl;
+	nodes = {{1, 1}};
+	root = GenBinaryTreeFromMap(nodes);
+	assert(root != NULL);
+	ret = inorderTraversal(root);
+	assert(ret.size() == 1);
+	InOrderTraversal(root);
+	DumpVector(ret);
 }

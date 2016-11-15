@@ -8,6 +8,7 @@
 #include "P51~100.h"
 // P94
 void BinaryTreeTest();
+void InOrderTraversalTest();
 // P93
 void RestoreIPAddressesTest();
 // P92
@@ -82,7 +83,8 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	BinaryTreeTest();
+	InOrderTraversalTest();
+	//BinaryTreeTest();
 }
 
 void Accepted()
