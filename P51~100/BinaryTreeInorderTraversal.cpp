@@ -103,7 +103,7 @@ vector<int> AinorderTraversal(TreeNode* root) {
 }
 
 
-vector<int> inorderTraversal(TreeNode* root) {
+vector<int> BinorderTraversal(TreeNode* root) {
 	vector<int> ret;
 
 	if(!root)
@@ -145,6 +145,50 @@ vector<int> inorderTraversal(TreeNode* root) {
 	return ret;
 }
 
+vector<int> inorderTraversal(TreeNode* root) {
+	vector<int> ret;
+
+	if(!root)
+		return ret;
+
+	bool flag = false;;
+	stack<TreeNode*> helper;
+	stack<bool> helperflag;
+	TreeNode * curr = root;
+
+	helperflag.push(flag);
+	helper.push(curr);
+
+	while(!helper.empty())
+	{
+		flag = helperflag.top();
+		curr = helper.top();
+
+		if(!flag&& curr->left)
+		{
+			helperflag.top() = true;
+			curr = curr->left;
+			helper.push(curr);
+			helperflag.push(false);
+		}
+		else if(curr->right) {
+			ret.push_back(curr->val);
+			curr = curr->right;
+			helper.pop();
+			helperflag.pop();
+			helper.push(curr);
+			helperflag.push(false);
+		}
+		else
+		{
+			ret.push_back(curr->val);
+			helper.pop();
+			helperflag.pop();
+		}
+	}
+
+	return ret;
+}
 void BinaryTreeTest()
 {
 	TreeNode * root = NULL;

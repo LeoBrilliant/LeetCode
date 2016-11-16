@@ -6,6 +6,8 @@
  */
 
 #include "P51~100.h"
+// P95
+void GenerateTreesTest();
 // P94
 void BinaryTreeTest();
 void InOrderTraversalTest();
@@ -83,13 +85,14 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	InOrderTraversalTest();
-	//BinaryTreeTest();
+	GenerateTreesTest();
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	InOrderTraversalTest();
+	//BinaryTreeTest();
 	RestoreIPAddressesTest();
 	ReverseLinkedListIITest();
 	NumberOf1BitsTest();
