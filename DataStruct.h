@@ -10,7 +10,9 @@
 
 #include <iostream>
 #include <vector>
+#include "DataStructures/VectorFuncs.h"
 #include "DataStructures/Interval.h"
+#include "DataStructures/Tree.h"
 
 using namespace std;
 
@@ -25,32 +27,5 @@ ListNode * GenListFromVector(vector<int> & nums);
 void DumpListNode(ListNode * head);
 
 void DumpListNode(ListNode * head, ListNode * tail);
-
-template<typename T>
-void DumpVector(vector<T> & vt)
-{
-	cout << '[';
-	for(auto t : vt)
-	{
-		cout << t << ", ";
-	}
-	cout << "]" << endl;
-}
-
-template<typename T>
-void DumpVectorOfVector(vector<vector<T>> & vvt)
-{
-	cout << "[" << endl;
-	for(auto vt : vvt)
-	{
-		DumpVector(vt);
-	}
-	cout << "]" << endl;
-}
-
-void DumpVectorOfStringByChar(vector<string> & vs);
-void DumpVectorOfVectorOfStringByChar(vector<vector<string>> & vvs);
-
-void VectorStringToVectorOfVectorOfChar(vector<string> & vs, vector<vector<char>> & vvc);
 
 #endif /* DATASTRUCT_H_ */

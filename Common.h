@@ -21,6 +21,8 @@
 #include <set>
 #include <map>
 #include <cassert>
+#include <unordered_set>
+#include <deque>
 
 #include "DataStruct.h"
 
