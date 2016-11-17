@@ -6,6 +6,10 @@
  */
 
 #include "P51~100.h"
+// P98
+void IsValidBSTTest();
+// P96
+void NumTreesTest();
 // P95
 void GenerateTreesTest();
 // P94
@@ -85,12 +89,14 @@ void TotalNQueensTest();
 
 void P51_100()
 {
-	GenerateTreesTest();
+	IsValidBSTTest();
 }
 
 void Accepted()
 {
 #ifdef ACCEPTED
+	NumTreesTest();
+	GenerateTreesTest();
 	InOrderTraversalTest();
 	//BinaryTreeTest();
 	RestoreIPAddressesTest();

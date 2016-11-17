@@ -137,7 +137,7 @@ void GenerateTree(vector<TreeNode*> & trees, vector<int> & nodes, TreeNode * roo
 	}
 }
 
-vector<TreeNode*> generateTrees(int n) {
+vector<TreeNode*> AgenerateTrees(int n) {
 
 	vector<TreeNode*> ret;
 
@@ -150,6 +150,49 @@ vector<TreeNode*> generateTrees(int n) {
 
 	GenerateTree(ret, nodes, NULL);
 	return ret;
+}
+
+vector<TreeNode*> Helper(int begin, int end)
+{
+	vector<TreeNode*> ret;
+	if(begin > end)
+	{
+		ret.push_back(NULL);
+	}
+	else if(begin == end)
+	{
+		TreeNode * node = new TreeNode(begin);
+		ret.push_back(node);
+	}
+	else
+	{
+		for(int i = begin; i <= end; ++i)
+		{
+			vector<TreeNode*> left = Helper(begin, i - 1);
+			vector<TreeNode*> right = Helper(i + 1, end);
+			for(int l = 0; l < left.size(); ++l)
+			{
+				for(int r = 0; r < right.size(); ++r)
+				{
+					TreeNode * root = new TreeNode(i);
+					root->left = left[l];
+					root->right = right[r];
+					ret.push_back(root);
+				}
+			}
+		}
+	}
+	return ret;
+}
+
+vector<TreeNode*> generateTrees(int n)
+{
+	vector<TreeNode*> ret;
+
+	if(n == 0)
+		return ret;
+
+	return Helper(1, n);
 }
 
 void GenerateTreesTest()
@@ -184,8 +227,11 @@ void GenerateTreesTest()
 	assert(count == 2);
 	for(auto t : ret)
 	{
-		InOrderTraversal(t);
+		TreeNode * root = t;
+		//cout << t << endl;
+		//InOrderTraversal(t);
 		PostOrderTraversal(t);
+		//PostOrderTraversal(root);
 	}
 
 	cout << "test case 4" << endl;
@@ -195,7 +241,9 @@ void GenerateTreesTest()
 	assert(count == 5);
 	for(auto t : ret)
 	{
-		InOrderTraversal(t);
+		//cout << t << endl;
+		//InOrderTraversal(t);
+		PreOrderTraversal(t);
 		PostOrderTraversal(t);
 	}
 
@@ -206,7 +254,8 @@ void GenerateTreesTest()
 	//assert(count == 5);
 	for(auto t : ret)
 	{
-		InOrderTraversal(t);
-		PostOrderTraversal(t);
+		//cout << t << endl;
+		//InOrderTraversal(t);
+		//PostOrderTraversal(t);
 	}
 }
