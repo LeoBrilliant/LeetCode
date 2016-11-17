@@ -7,7 +7,7 @@
 
 #include "P51~100.h"
 
-void Combination(vector<vector<int>> & ret, vector<int> & curr, vector<int> & nums, int index, int left)
+static void Combination(vector<vector<int>> & ret, vector<int> & curr, vector<int> & nums, int index, int left)
 {
 	if(left == 0)
 	{
