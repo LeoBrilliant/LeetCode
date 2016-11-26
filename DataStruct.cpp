@@ -6,7 +6,7 @@
  */
 
 #include "DataStruct.h"
-
+/*
 ListNode * GenListFromVector(vector<int> & nums)
 {
 	if(nums.empty())
@@ -57,4 +57,4 @@ void DumpListNode(ListNode * head, ListNode * tail)
 		head = head->next;
 	}
 	cout << "^]" << endl;
-}
+}*/

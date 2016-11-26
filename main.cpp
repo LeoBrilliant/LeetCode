@@ -16,8 +16,8 @@ extern void P51_100();
 int main()
 {
     cout << "LeetCode Practice" << endl;
-    P101_150();
-    P51_100();
+    //P101_150();
+    //P51_100();
     //P1_50();
     Solutions s;
     s.TestLastSolutions();
